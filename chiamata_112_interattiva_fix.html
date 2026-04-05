@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chiamata interattiva al 112</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg1: #f5fbff;
+            --bg2: #fff8ef;
+            --card: #ffffff;
+            --red: #d93b3b;
+            --green: #58b978;
+            --dark: #2d2d2d;
+            --blue: #dfeefe;
+            --yellow: #ffe8a6;
+            --shadow: 0 18px 40px rgba(0,0,0,.12);
+            --radius: 28px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Baloo 2', system-ui, sans-serif;
+            color: var(--dark);
+            background: linear-gradient(180deg,var(--bg1),var(--bg2));
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .app {
+            height: 100vh;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            padding: 8px;
+        }
+
+        .wrap {
+            width: min(1250px,100%);
+            height: 100%;
+            background: rgba(255,255,255,.78);
+            backdrop-filter: blur(4px);
+            border-radius: 36px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.7);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 16px;
+            background: linear-gradient(90deg,#fff4d7,#fff);
+            border-bottom: 1px solid rgba(0,0,0,.06);
+            flex: 0 0 auto;
+        }
+
+        .title {
+            font-size: clamp(22px,3vw,34px);
+            line-height: 1;
+            font-weight: 800;
+            margin: 0;
+        }
+
+            .title .red {
+                color: var(--red)
+            }
+
+        .subtitle {
+            margin: 4px 0 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #54616f;
+        }
+
+        .stage {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 12px;
+            padding: 12px;
+            flex: 1 1 auto;
+            min-height: 0;
+        }
+
+        .phone-card,
+        .story-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 10px 24px rgba(0,0,0,.08);
+            padding: 14px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .phone-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .screen {
+            background: #18222f;
+            color: #fff;
+            border-radius: 22px;
+            min-height: 80px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: inset 0 0 0 4px rgba(255,255,255,.05);
+        }
+
+        .screen-label {
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: #c4d2df;
+        }
+
+        .display {
+            font-size: 36px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 6px;
+            min-height: 38px;
+            margin: 4px 0;
+            color: #fff0a3;
+        }
+
+        .status {
+            font-size: 15px;
+            font-weight: 700;
+            color: #d9e6f2;
+            min-height: 22px;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .key {
+            border: none;
+            border-radius: 18px;
+            height: 60px;
+            font-size: 26px;
+            font-weight: 800;
+            font-family: inherit;
+            cursor: pointer;
+            color: var(--dark);
+            background: linear-gradient(180deg,#fff,#f5f7fa);
+            box-shadow: 0 8px 16px rgba(0,0,0,.08);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+            .key:hover {
+                transform: translateY(-2px)
+            }
+
+            .key:active {
+                transform: scale(.98)
+            }
+
+        .phone-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 16px;
+            padding: 10px 12px;
+            font-size: 16px;
+            font-weight: 800;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform .14s ease;
+        }
+
+            .btn:hover {
+                transform: translateY(-1px)
+            }
+
+        .btn-green {
+            background: var(--green);
+            color: #fff
+        }
+
+        .btn-light {
+            background: #edf4ff;
+            color: #224d8a
+        }
+
+        .btn-red {
+            background: #ffe7e7;
+            color: #b62828
+        }
+
+        .story-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: #fff7d7;
+            color: #8b6500;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .scene-layout {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 14px;
+            align-items: start;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .chat {
+            background: linear-gradient(180deg,#f9fcff,#fff);
+            border-radius: 24px;
+            height: 320px;
+            min-height: 0;
+            padding: 14px;
+            position: relative;
+            overflow: auto;
+            border: 2px dashed #dbe9ff;
+        }
+
+        .chat-placeholder {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #6c7b88;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.25;
+            padding: 12px;
+        }
+
+        .messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bubble {
+            max-width: 78%;
+            padding: 10px 12px;
+            border-radius: 20px;
+            font-size: clamp(16px,1.6vw,24px);
+            font-weight: 800;
+            line-height: 1.15;
+            box-shadow: 0 8px 16px rgba(0,0,0,.06);
+            animation: pop .25s ease;
+        }
+
+            .bubble.left {
+                align-self: flex-start;
+                background: #f7e8b8;
+                border-top-left-radius: 8px;
+            }
+
+            .bubble.right {
+                align-self: flex-end;
+                background: #dfeaf8;
+                border-top-right-radius: 8px;
+            }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: translateY(8px) scale(.98)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .hint {
+            margin-top: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #5f6c79;
+            min-height: 24px;
+        }
+
+        .art-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .ref-image {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            box-shadow: 0 10px 24px rgba(0,0,0,.1);
+            background: #f6f6f6;
+            object-fit: cover;
+            max-height: 220px;
+        }
+
+        .goal {
+            background: linear-gradient(180deg,#eefbf2,#fff);
+            border: 2px solid #bce6c8;
+            border-radius: 18px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .success {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 18px;
+            background: #eefdf2;
+            color: #1b6c39;
+            border: 2px solid #bde8c8;
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+            display: none;
+        }
+
+            .success.show {
+                display: block
+            }
+
+        .tiny {
+            font-size: 13px;
+            color: #687684;
+            margin-top: 6px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        @media (max-width:980px) {
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .app {
+                height: auto;
+            }
+
+            .wrap {
+                height: auto;
+            }
+
+            .stage,
+            .scene-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chat {
+                height: 280px;
+            }
+
+            .bubble {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="app">
+    <div class="wrap">
+      <div class="header">
+        <div>
+          <h1 class="title"><span class="red">CHIAMIAMO</span> IL 112</h1>
+          <p class="subtitle">Digita 1-1-2 e ascolta la conversazione di aiuto.</p>
+        </div>
+        <div class="pill">Mini scena interattiva</div>
+      </div>
+
+      <div class="stage">
+        <section class="phone-card">
+          <div class="phone-top">
+            <strong style="font-size:24px">📱 Telefono</strong>
+            <span class="pill" id="stepBadge">Passo 1</span>
+          </div>
+
+          <div class="screen">
+            <div class="screen-label">Numero composto</div>
+            <div class="display" id="display"></div>
+            <div class="status" id="phoneStatus">Tocca i numeri per chiamare aiuto.</div>
+          </div>
+
+          <div class="keypad" id="keypad"></div>
+
+          <div class="phone-actions">
+            <button class="btn btn-light" id="clearBtn">Cancella</button>
+            <button class="btn btn-green" id="callBtn">Chiama</button>
+          </div>
+          <div class="phone-actions" style="grid-template-columns:1fr; margin-top:10px;">
+            <button class="btn btn-red" id="restartBtn">Ricomincia scena</button>
+          </div>
+          <div class="tiny">Sequenza corretta: 1 • 1 • 2</div>
+        </section>
+
+        <section class="story-card">
+          <div class="story-top">
+            <strong style="font-size:26px">🎧 Conversazione guidata</strong>
+            <span class="pill" id="storyPill">Prima chiama il 112</span>
+          </div>
+
+          <div class="scene-layout">
+            <div>
+              <div class="chat" id="chatBox">
+                <div class="chat-placeholder" id="placeholder">
+                  Componi <strong style="padding:0 8px; color:#d93b3b;">112</strong><br>
+                  per far iniziare la chiamata.
+                </div>
+                <div class="messages" id="messages"></div>
+              </div>
+
+              <div class="controls">
+                <button class="btn btn-green" id="nextBtn" disabled>Avanti</button>
+                <button class="btn btn-light" id="listenBtn" disabled>Riascolta</button>
+              </div>
+              <div class="hint" id="hintText">Prima digita il numero giusto.</div>
+              <div class="success" id="successBox">⭐ Bravissimo! Hai chiamato il 112 nel modo giusto.</div>
+            </div>
+
+            <div class="art-box">
+              <img src="image2.png" alt="Esempio illustrato di chiamata al 112" class="ref-image">
+              <div class="goal">
+                <strong>Obiettivo del gioco</strong><br>
+                Il bambino impara che quando una persona cade, batte la testa e non si sveglia, bisogna chiamare subito il <strong>112</strong> e dire cosa è successo e dove si trova.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctNumber = '112';
+    const sequence = [
+      { side: 'right', text: 'Pronto, qui 112. Cosa succede?' },
+      { side: 'right', text: 'Va bene, dove ti trovi?' },
+      { side: 'right', text: 'Perfetto, resta calmo lì.' },
+      { side: 'right', text: 'Stiamo arrivando ad aiutarvi.' },
+      { side: 'right', text: '' }
+    ];
+
+    const display = document.getElementById('display');
+    const phoneStatus = document.getElementById('phoneStatus');
+    const keypad = document.getElementById('keypad');
+    const clearBtn = document.getElementById('clearBtn');
+    const callBtn = document.getElementById('callBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const listenBtn = document.getElementById('listenBtn');
+    const messages = document.getElementById('messages');
+    const placeholder = document.getElementById('placeholder');
+    const hintText = document.getElementById('hintText');
+    const storyPill = document.getElementById('storyPill');
+    const stepBadge = document.getElementById('stepBadge');
+    const successBox = document.getElementById('successBox');
+
+    let typed = '';
+    let callStarted = false;
+    let currentIndex = -1;
+    let isSpeaking = false;
+    let pendingAfterSpeak = null;
+
+      function speak(text, onEnd = null) {
+          window.speechSynthesis.cancel();
+
+          const parts = text.split('.').filter(t => t.trim() !== '');
+          let index = 0;
+
+          function speakNext() {
+              if (index >= parts.length) {
+                  if (onEnd) onEnd();
+                  return;
+              }
+
+              const u = new SpeechSynthesisUtterance(parts[index].trim() + '.');
+              u.lang = 'it-IT';
+              u.rate = 0.85;
+              u.pitch = 1.05;
+
+              u.onend = () => {
+                  index++;
+                  setTimeout(speakNext, 200); // pausa tra frasi
+              };
+
+              u.onerror = () => {
+                  index++;
+                  speakNext();
+              };
+
+              window.speechSynthesis.speak(u);
+          }
+
+          speakNext();
+      }
+
+    function playTone(){
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 740;
+        gain.gain.value = 0.03;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      } catch(e) {}
+    }
+
+    function renderDisplay(){
+      display.textContent = typed;
+    }
+
+    function addDigit(d){
+      if (callStarted || typed.length >= 3) return;
+      typed += d;
+      renderDisplay();
+      playTone();
+      phoneStatus.textContent = typed.length < 3 ? 'Continua a digitare.' : 'Premi Chiama.';
+    }
+
+    function clearDigits(){
+      if (callStarted) return;
+      typed = '';
+      renderDisplay();
+      phoneStatus.textContent = 'Tocca i numeri per chiamare aiuto.';
+      hintText.textContent = 'Prima digita il numero giusto.';
+    }
+
+    function appendMessage(item){
+      nextBtn.disabled = true;
+      listenBtn.disabled = true;
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${item.side}`;
+      bubble.textContent = item.text;
+      messages.appendChild(bubble);
+      bubble.scrollIntoView({behavior:'smooth', block:'end'});
+      speak(item.text, () => {
+        if (currentIndex < sequence.length - 1) {
+          nextBtn.disabled = false;
+          listenBtn.disabled = false;
+        } else {
+          listenBtn.disabled = false;
+        }
+      });
+    }
+
+    function nextMessage(){
+      if (!callStarted || isSpeaking) return;
+      if (currentIndex >= sequence.length - 1) return;
+      currentIndex += 1;
+      appendMessage(sequence[currentIndex]);
+      stepBadge.textContent = `Passo ${Math.min(currentIndex + 2, 7)}`;
+
+      if (currentIndex === sequence.length - 1) {
+        nextBtn.disabled = true;
+        listenBtn.disabled = false;
+        storyPill.textContent = 'Chiamata completata';
+        hintText.textContent = 'Hai ascoltato tutta la conversazione.';
+        successBox.classList.add('show');
+        setTimeout(() => speak('Bravissimo! Hai chiamato il 112 nel modo giusto.'), 1000);
+      } else {
+        hintText.textContent = 'Aspetta che finisca la frase, poi tocca Avanti.';
+      }
+    }
+
+    function startCall(){
+      if (typed !== correctNumber) {
+        phoneStatus.textContent = 'Numero sbagliato. Riprova.';
+        hintText.textContent = 'Il numero giusto è 112.';
+        speak('Riprova. Il numero giusto è uno uno due.');
+        return;
+      }
+      callStarted = true;
+      currentIndex = -1;
+      messages.innerHTML = '';
+      placeholder.style.display = 'none';
+      successBox.classList.remove('show');
+      phoneStatus.textContent = 'Chiamata in corso...';
+      storyPill.textContent = 'La chiamata è iniziata';
+      hintText.textContent = 'Ascolta la prima frase, poi tocca Avanti.';
+      nextBtn.disabled = false;
+      listenBtn.disabled = true;
+      callBtn.disabled = true;
+      clearBtn.disabled = true;
+      stepBadge.textContent = 'Passo 2';
+      speak('drin Drin. La chiamata al 1 1 2 è iniziata.', () => {
+        setTimeout(nextMessage, 1350);
+      });
+    }
+
+    function replayCurrent(){
+      if (currentIndex >= 0 && sequence[currentIndex] && !isSpeaking) speak(sequence[currentIndex].text);
+    }
+
+    function restart(){
+      window.speechSynthesis.cancel();
+      typed = '';
+      callStarted = false;
+      currentIndex = -1;
+      isSpeaking = false;
+      pendingAfterSpeak = null;
+      renderDisplay();
+      messages.innerHTML = '';
+      placeholder.style.display = 'flex';
+      phoneStatus.textContent = 'Tocca i numeri per chiamare aiuto.';
+      storyPill.textContent = 'Prima chiama il 112';
+      hintText.textContent = 'Prima digita il numero giusto.';
+      nextBtn.disabled = true;
+      listenBtn.disabled = true;
+      callBtn.disabled = false;
+      clearBtn.disabled = false;
+      stepBadge.textContent = 'Passo 1';
+      successBox.classList.remove('show');
+    }
+
+    ['1','2','3','4','5','6','7','8','9','*','0','#'].forEach(num => {
+      const b = document.createElement('button');
+      b.className = 'key';
+      b.textContent = num;
+      b.addEventListener('click', () => {
+        if (/^[0-9]$/.test(num)) addDigit(num);
+      });
+      keypad.appendChild(b);
+    });
+
+    clearBtn.addEventListener('click', clearDigits);
+    callBtn.addEventListener('click', startCall);
+    nextBtn.addEventListener('click', nextMessage);
+    listenBtn.addEventListener('click', replayCurrent);
+    restartBtn.addEventListener('click', restart);
+
+    renderDisplay();
+  </script>
+</body>
+</html>
