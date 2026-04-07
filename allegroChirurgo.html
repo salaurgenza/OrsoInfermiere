@@ -1,0 +1,1013 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orso Infermiere - Piccolo Soccorritore</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: radial-gradient(circle at top left, #fff7b8 0%, transparent 20%), radial-gradient(circle at top right, #ffd6ec 0%, transparent 20%), radial-gradient(circle at bottom left, #d8f3ff 0%, transparent 20%), linear-gradient(to bottom, #aee7ff, #ffffff);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .cloud {
+            position: fixed;
+            color: rgba(255,255,255,0.9);
+            font-size: 56px;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatCloud 25s linear infinite;
+        }
+
+            .cloud.c1 {
+                top: 30px;
+                left: -80px;
+                animation-duration: 28s;
+            }
+
+            .cloud.c2 {
+                top: 110px;
+                left: -120px;
+                animation-duration: 35s;
+            }
+
+            .cloud.c3 {
+                top: 190px;
+                left: -100px;
+                animation-duration: 31s;
+            }
+
+        @keyframes floatCloud {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        #game {
+            position: relative;
+            z-index: 1;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 10px 20px 140px;
+        }
+
+        h1 {
+            margin-top: 18px;
+            color: #0b4f6c;
+            font-size: 36px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+        }
+
+        #levelTitle {
+            font-size: 27px;
+            font-weight: bold;
+            color: #ff7a00;
+            margin-top: 6px;
+        }
+
+        #instruction {
+            font-size: 22px;
+            color: #333;
+            margin: 10px 20px 12px;
+        }
+
+        #starsBar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 12px 0 16px;
+            min-height: 42px;
+            flex-wrap: wrap;
+        }
+
+        .star {
+            font-size: 34px;
+            opacity: 0.28;
+            transform: scale(0.95);
+            transition: 0.25s;
+        }
+
+            .star.earned {
+                opacity: 1;
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.45));
+            }
+
+        .scene {
+            position: relative;
+            width: 720px;
+            max-width: 95%;
+            height: 440px;
+            margin: 0 auto 22px;
+            background: linear-gradient(to bottom, #f8fdff 0%, #ffffff 68%, #dff7cf 68%, #d7f0c7 100%);
+            border-radius: 28px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 5px solid #d9f2ff;
+        }
+
+            .scene::before {
+                content: "☀️";
+                position: absolute;
+                top: 14px;
+                left: 18px;
+                font-size: 42px;
+                opacity: 0.95;
+            }
+
+            .scene::after {
+                content: "🌼   🌷   🌼";
+                position: absolute;
+                bottom: 12px;
+                left: 24px;
+                font-size: 28px;
+                opacity: 0.95;
+            }
+
+        #sceneMain {
+            position: absolute;
+            left: 255px;
+            top: 72px;
+            font-size: 178px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        #sceneMark1, #sceneMark2 {
+            position: absolute;
+            font-size: 36px;
+            user-select: none;
+        }
+
+        #sceneMark1 {
+            left: 340px;
+            top: 270px;
+        }
+
+        #sceneMark2 {
+            left: 312px;
+            top: 92px;
+        }
+
+        #rightBox {
+            position: absolute;
+            right: 32px;
+            top: 60px;
+            width: 155px;
+            height: 125px;
+            border: 4px dashed #2f80ed;
+            border-radius: 22px;
+            background: #eef7ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #0b4f6c;
+            font-weight: bold;
+            user-select: none;
+            box-shadow: inset 0 0 0 3px rgba(255,255,255,0.7);
+        }
+
+        .drop-zone {
+            position: absolute;
+            border: 4px dashed transparent;
+            border-radius: 18px;
+            transition: 0.2s;
+        }
+
+            .drop-zone.highlight {
+                border-color: #ff9800;
+                background: rgba(255, 152, 0, 0.16);
+            }
+
+        #zone1 {
+            left: 318px;
+            top: 252px;
+            width: 92px;
+            height: 82px;
+        }
+
+        #zone2 {
+            left: 284px;
+            top: 74px;
+            width: 98px;
+            height: 78px;
+        }
+
+        #zone3 {
+            right: 28px;
+            top: 56px;
+            width: 164px;
+            height: 132px;
+        }
+
+        .placed {
+            position: absolute;
+            font-size: 50px;
+            z-index: 5;
+            pointer-events: none;
+            display: none;
+        }
+
+        #placed1 {
+            left: 332px;
+            top: 260px;
+        }
+
+        #placed2 {
+            left: 297px;
+            top: 82px;
+        }
+
+        #placed3 {
+            right: 72px;
+            top: 96px;
+            font-size: 54px;
+        }
+
+        .tools {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tool {
+            width: 156px;
+            min-height: 124px;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+            border: 3px solid #e8f4ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            user-select: none;
+            font-size: 58px;
+            padding: 10px;
+            transition: transform 0.18s;
+        }
+
+            .tool:hover {
+                transform: translateY(-2px);
+            }
+
+            .tool span {
+                font-size: 22px;
+                margin-top: 8px;
+                color: #333;
+                font-weight: bold;
+            }
+
+            .tool.dragging {
+                opacity: 0.6;
+                transform: scale(0.96);
+            }
+
+        #message {
+            margin-top: 22px;
+            font-size: 31px;
+            font-weight: bold;
+            color: #1b8f3a;
+            min-height: 42px;
+        }
+
+        #submessage {
+            margin-top: 8px;
+            font-size: 22px;
+            color: #0b4f6c;
+            min-height: 34px;
+        }
+
+        .controls {
+            margin-top: 18px;
+        }
+
+        button {
+            font-size: 22px;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            margin: 0 6px;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+        }
+
+        #nextBtn {
+            background: #4CAF50;
+            color: white;
+            display: none;
+        }
+
+        #restartBtn {
+            background: #ff9800;
+            color: white;
+            display: none;
+        }
+
+        #diplomaOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 20px;
+        }
+
+        #diplomaCard {
+            width: min(760px, 92vw);
+            background: linear-gradient(to bottom, #fffaf0, #fffdf7);
+            border: 8px solid #ffd76b;
+            border-radius: 30px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+            padding: 28px 24px 26px;
+            position: relative;
+        }
+
+            #diplomaCard::before {
+                content: "🏅";
+                position: absolute;
+                top: -18px;
+                right: 18px;
+                font-size: 56px;
+            }
+
+        #diplomaTitle {
+            font-size: 36px;
+            color: #d97706;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        #diplomaBear {
+            font-size: 82px;
+            margin: 8px 0;
+        }
+
+        #diplomaText {
+            font-size: 24px;
+            color: #234;
+            line-height: 1.4;
+        }
+
+        #diplomaStars {
+            margin: 16px 0 10px;
+            font-size: 36px;
+        }
+
+        #diplomaBtn {
+            margin-top: 12px;
+            background: #ff9800;
+            color: white;
+        }
+
+        #guideBear {
+            position: fixed;
+            left: 18px;
+            bottom: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        #guideBearIcon {
+            font-size: 78px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+        }
+
+        #guideBubble {
+            max-width: 260px;
+            background: #ffffff;
+            border-radius: 22px 22px 22px 8px;
+            padding: 12px 14px;
+            font-size: 18px;
+            color: #234;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            text-align: left;
+            line-height: 1.3;
+            border: 3px solid #e7f6ff;
+        }
+
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 29px;
+            }
+
+            #levelTitle {
+                font-size: 22px;
+            }
+
+            #instruction {
+                font-size: 20px;
+            }
+
+            .scene {
+                height: 395px;
+            }
+
+            #sceneMain {
+                left: 202px;
+                top: 88px;
+                font-size: 150px;
+            }
+
+            #sceneMark1 {
+                left: 276px;
+                top: 266px;
+            }
+
+            #sceneMark2 {
+                left: 252px;
+                top: 108px;
+            }
+
+            #zone1 {
+                left: 252px;
+                top: 245px;
+            }
+
+            #zone2 {
+                left: 228px;
+                top: 92px;
+            }
+
+            #placed1 {
+                left: 266px;
+                top: 254px;
+            }
+
+            #placed2 {
+                left: 242px;
+                top: 99px;
+            }
+
+            #rightBox {
+                width: 128px;
+                height: 108px;
+                right: 18px;
+                top: 65px;
+                font-size: 24px;
+            }
+
+            #zone3 {
+                width: 138px;
+                height: 118px;
+                right: 13px;
+                top: 60px;
+            }
+
+            #placed3 {
+                right: 48px;
+                top: 95px;
+            }
+
+            #guideBear {
+                left: 10px;
+                right: 10px;
+                bottom: 8px;
+            }
+
+            #guideBearIcon {
+                font-size: 62px;
+            }
+
+            #guideBubble {
+                max-width: 220px;
+                font-size: 16px;
+            }
+
+            #game {
+                padding-bottom: 130px;
+            }
+        }
+        .game-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tools {
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tool {
+            width: 100%;
+            font-size: 42px;
+        }
+
+        #guideBear {
+            position: absolute;
+            top: 20px;
+            left: 0%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        #guideBearIcon {
+            font-size: 60px;
+        }
+
+        #guideBubble {
+            max-width: 220px;
+            background: #ffffff;
+            border-radius: 18px 18px 18px 6px;
+            padding: 10px 12px;
+            font-size: 16px;
+            color: #234;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 2px solid #e7f6ff;
+        }
+        #game {
+            position: relative;
+        }
+        #guideBear {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+            #guideBear:active {
+                transform: scale(0.95);
+            }
+        .talking {
+            animation: bounce 0.4s;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.1);
+            }
+
+            60% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud c1">☁️</div>
+    <div class="cloud c2">☁️</div>
+    <div class="cloud c3">☁️</div>
+
+    <div id="game">
+        <h1>🐻 Orso Infermiere</h1>
+        <div id="levelTitle"></div>
+        <p id="instruction"></p>
+
+        <!-- ORSO GUIDA SPOSTATO IN ALTO -->
+        <div id="guideBear">
+            <div id="guideBearIcon">🐻</div>
+            <div id="guideBubble">Ciao! Trascina gli oggetti nel posto giusto.</div>
+        </div>
+
+        <div id="starsBar"></div>
+
+        <!-- NUOVO LAYOUT A DUE COLONNE -->
+        <div class="game-layout">
+
+            <!-- SCENA -->
+            <div class="scene">
+                <div id="sceneMain"></div>
+                <div id="sceneMark1"></div>
+                <div id="sceneMark2"></div>
+                <div id="rightBox"></div>
+
+                <div id="zone1" class="drop-zone"></div>
+                <div id="zone2" class="drop-zone"></div>
+                <div id="zone3" class="drop-zone"></div>
+
+                <div id="placed1" class="placed"></div>
+                <div id="placed2" class="placed"></div>
+                <div id="placed3" class="placed"></div>
+            </div>
+
+            <!-- STRUMENTI A DESTRA -->
+            <div class="tools" id="tools"></div>
+
+        </div>
+
+        <div id="message"></div>
+        <div id="submessage"></div>
+
+        <div class="controls">
+            <button id="nextBtn">Vai al livello dopo</button>
+            <button id="restartBtn">Ricomincia</button>
+        </div>
+    </div>
+
+    <div id="diplomaOverlay">
+        <div id="diplomaCard">
+            <div id="diplomaTitle">Diploma</div>
+            <div id="diplomaBear">🐻⭐</div>
+            <div id="diplomaText">
+                Questo diploma è per il piccolo grande aiuto dato con calma, attenzione e gentilezza.
+                <br><br>
+                <strong>Sei un vero Piccolo Soccorritore!</strong>
+            </div>
+            <div id="diplomaStars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+            <button id="diplomaBtn">Gioca ancora</button>
+        </div>
+    </div>
+
+   
+    <script>const levels = [
+            {
+                title: "Piccola ferita",
+                instruction: "Maialino il pittore stava dipingendo e cade a terra, si è fatto un piccolo graffio sul ginocchio e piange, cosa facciamo??.",
+                guide: "Metti gli aiuti nel posto giusto.",
+                sceneMain: "🧒",
+                mark1: "🩹",
+                mark2: "💥",
+                rightBox: "📞<br>112",
+                targets: [
+                    { id: "cerotto", emoji: "🩹", label: "Cerotto", zone: "zone1", placed: "placed1", placedEmoji: "🩹", successMain: "Bravo! Hai messo il cerotto.", successSub: "Il cerotto aiuta una piccola ferita.", voice: "Bravo! Hai messo il cerotto." },
+                    { id: "ghiaccio", emoji: "🧊", label: "Ghiaccio", zone: "zone2", placed: "placed2", placedEmoji: "🧊", successMain: "Bravo! Hai messo il ghiaccio.", successSub: "Il ghiaccio aiuta una botta.", voice: "Bravo! Hai messo il ghiaccio." },
+                    { id: "telefono", emoji: "📱", label: "Telefono", zone: "zone3", placed: "placed3", placedEmoji: "📱", successMain: "Bravo! Hai preso il telefono.", successSub: "Il numero 112 chiama aiuto.", voice: "Bravo! Hai preso il telefono. Il numero 112 chiama aiuto." }
+                ],
+                finalMain: "Sei bravissima!",
+                finalSub: "Hai aiutato il bambino in modo corretto.",
+                finalVoice: "Sei bravissima! Hai aiutato il bambino in modo corretto."
+            },
+            {
+                title: "Livello 2 - Bambino triste",
+                instruction: "Aiuta il bambino a stare meglio.",
+                guide: "Calma, dolcezza e un adulto aiutano sempre.",
+                sceneMain: "😢",
+                mark1: "💧",
+                mark2: "🧸",
+                rightBox: "👩‍🏫<br>ADULTO",
+                targets: [
+                    { id: "acqua", emoji: "💧", label: "Acqua", zone: "zone1", placed: "placed1", placedEmoji: "💧", successMain: "Bravo! Hai dato da bere.", successSub: "L'acqua può aiutare il bambino.", voice: "Bravo! Hai dato da bere." },
+                    { id: "peluche", emoji: "🧸", label: "Peluche", zone: "zone2", placed: "placed2", placedEmoji: "🧸", successMain: "Bravo! Hai portato il peluche.", successSub: "Un peluche può calmare il bambino.", voice: "Bravo! Hai portato il peluche." },
+                    { id: "maestra", emoji: "👩‍🏫", label: "Maestra", zone: "zone3", placed: "placed3", placedEmoji: "👩‍🏫", successMain: "Bravo! Hai chiamato un adulto.", successSub: "Un adulto aiuta sempre.", voice: "Bravo! Hai chiamato un adulto." }
+                ],
+                finalMain: "Molto bene!",
+                finalSub: "Hai aiutato il bambino con calma e gentilezza.",
+                finalVoice: "Molto bene! Hai aiutato il bambino con calma e gentilezza."
+            },
+            {
+                title: "Livello 3 - Emergenza",
+                instruction: "Scegli gli aiuti giusti in una situazione importante.",
+                guide: "Prima di tutto chiama un adulto e il 112.",
+                sceneMain: "😵",
+                mark1: "❗",
+                mark2: "💓",
+                rightBox: "📞<br>112",
+                targets: [
+                    { id: "telefono2", emoji: "📱", label: "Telefono", zone: "zone3", placed: "placed3", placedEmoji: "📱", successMain: "Bravo! Hai preso il telefono.", successSub: "Il 112 aiuta nelle emergenze.", voice: "Bravo! Hai preso il telefono. Il 112 aiuta nelle emergenze." },
+                    { id: "adulto", emoji: "🧑", label: "Adulto", zone: "zone2", placed: "placed2", placedEmoji: "🧑", successMain: "Bravo! Hai chiamato un adulto.", successSub: "Un adulto può aiutare subito.", voice: "Bravo! Hai chiamato un adulto." },
+                    { id: "coperta", emoji: "🧣", label: "Coperta", zone: "zone1", placed: "placed1", placedEmoji: "🧣", successMain: "Bravo! Hai portato una coperta.", successSub: "Aiutare con calma è importante.", voice: "Bravo! Hai portato una coperta." }
+                ],
+                finalMain: "Bravissima!",
+                finalSub: "Nelle emergenze bisogna chiamare aiuto subito.",
+                finalVoice: "Bravissima! Nelle emergenze bisogna chiamare aiuto subito."
+            },
+            {
+                title: "Livello 4 - Incendio",
+                instruction: "Aiuta nella situazione di pericolo.",
+                guide: "In caso di incendio si chiede aiuto e si esce con un adulto.",
+                sceneMain: "🔥",
+                mark1: "🚪",
+                mark2: "⚠️",
+                rightBox: "📞<br>112",
+                targets: [
+                    { id: "telefono3", emoji: "📱", label: "Telefono", zone: "zone3", placed: "placed3", placedEmoji: "📱", successMain: "Bravo! Hai preso il telefono.", successSub: "Il 112 chiama i soccorsi.", voice: "Bravo! Hai preso il telefono. Il 112 chiama i soccorsi." },
+                    { id: "adulto2", emoji: "👨", label: "Adulto", zone: "zone2", placed: "placed2", placedEmoji: "👨", successMain: "Bravo! Hai chiamato un adulto.", successSub: "Gli adulti aiutano a uscire in sicurezza.", voice: "Bravo! Hai chiamato un adulto." },
+                    { id: "uscita", emoji: "🚪", label: "Uscita", zone: "zone1", placed: "placed1", placedEmoji: "🚪", successMain: "Bravo! Hai trovato l'uscita.", successSub: "In caso di pericolo si esce con un adulto.", voice: "Bravo! Hai trovato l'uscita." }
+                ],
+                finalMain: "Molto bene!",
+                finalSub: "In caso di incendio si chiede aiuto e si esce con un adulto.",
+                finalVoice: "Molto bene! In caso di incendio si chiede aiuto e si esce con un adulto."
+            },
+            {
+                title: "Livello 5 - Caduta al parco",
+                instruction: "Aiuta il bambino che è caduto al parco.",
+                guide: "Ghiaccio, cerotto e un adulto possono aiutare.",
+                sceneMain: "🛝",
+                mark1: "🩹",
+                mark2: "😢",
+                rightBox: "👩‍🏫<br>ADULTO",
+                targets: [
+                    { id: "ghiaccio2", emoji: "🧊", label: "Ghiaccio", zone: "zone1", placed: "placed1", placedEmoji: "🧊", successMain: "Bravo! Hai portato il ghiaccio.", successSub: "Il ghiaccio aiuta una botta.", voice: "Bravo! Hai portato il ghiaccio." },
+                    { id: "adulto3", emoji: "👩", label: "Adulto", zone: "zone3", placed: "placed3", placedEmoji: "👩", successMain: "Bravo! Hai chiamato un adulto.", successSub: "Un adulto aiuta il bambino.", voice: "Bravo! Hai chiamato un adulto." },
+                    { id: "cerotto2", emoji: "🩹", label: "Cerotto", zone: "zone2", placed: "placed2", placedEmoji: "🩹", successMain: "Bravo! Hai portato il cerotto.", successSub: "Il cerotto aiuta una piccola ferita.", voice: "Bravo! Hai portato il cerotto." }
+                ],
+                finalMain: "Benissimo!",
+                finalSub: "Hai aiutato il bambino caduto al parco.",
+                finalVoice: "Benissimo! Hai aiutato il bambino caduto al parco."
+            },
+            {
+                title: "Livello 6 - Naso che sanguina",
+                instruction: "Aiuta il bambino con il naso che sanguina.",
+                guide: "Mantieni la calma e chiama la maestra.",
+                sceneMain: "👦",
+                mark1: "🩸",
+                mark2: "🤧",
+                rightBox: "👩‍🏫<br>ADULTO",
+                targets: [
+                    { id: "fazzoletto", emoji: "🧻", label: "Fazzoletto", zone: "zone1", placed: "placed1", placedEmoji: "🧻", successMain: "Bravo! Hai preso il fazzoletto.", successSub: "Serve per aiutare il bambino.", voice: "Bravo! Hai preso il fazzoletto." },
+                    { id: "adulto4", emoji: "👩‍🏫", label: "Maestra", zone: "zone3", placed: "placed3", placedEmoji: "👩‍🏫", successMain: "Bravo! Hai chiamato la maestra.", successSub: "Un adulto aiuta sempre.", voice: "Bravo! Hai chiamato la maestra." },
+                    { id: "calma", emoji: "🤲", label: "Calma", zone: "zone2", placed: "placed2", placedEmoji: "🤲", successMain: "Bravo! Sei rimasta calma.", successSub: "Con calma si aiuta meglio.", voice: "Bravo! Sei rimasta calma." }
+                ],
+                finalMain: "Ottimo lavoro!",
+                finalSub: "Hai aiutato con calma e hai chiamato un adulto.",
+                finalVoice: "Ottimo lavoro! Hai aiutato con calma e hai chiamato un adulto."
+            },
+            {
+                title: "Livello 7 - Chiedo aiuto",
+                instruction: "Scegli le cose giuste per chiedere aiuto.",
+                guide: "La voce, il telefono e la maestra aiutano a chiedere aiuto.",
+                sceneMain: "🧒",
+                mark1: "🙋",
+                mark2: "❓",
+                rightBox: "👩‍🏫<br>AIUTO",
+                targets: [
+                    { id: "maestra2", emoji: "👩‍🏫", label: "Maestra", zone: "zone3", placed: "placed3", placedEmoji: "👩‍🏫", successMain: "Bravo! Hai chiamato la maestra.", successSub: "Un adulto può aiutarti.", voice: "Bravo! Hai chiamato la maestra." },
+                    { id: "telefono4", emoji: "📱", label: "Telefono", zone: "zone2", placed: "placed2", placedEmoji: "📱", successMain: "Bravo! Hai preso il telefono.", successSub: "Il telefono serve per chiamare aiuto.", voice: "Bravo! Hai preso il telefono." },
+                    { id: "voce", emoji: "🗣️", label: "Voce", zone: "zone1", placed: "placed1", placedEmoji: "🗣️", successMain: "Bravo! Hai chiesto aiuto.", successSub: "Parlare forte può aiutare.", voice: "Bravo! Hai chiesto aiuto." }
+                ],
+                finalMain: "Hai finito tutti i livelli!",
+                finalSub: "Sei stata bravissima nel gioco di primo soccorso.",
+                finalVoice: "Hai finito tutti i livelli! Sei stata bravissima nel gioco di primo soccorso."
+            }
+        ];
+        const guideBear = document.getElementById("guideBear");
+
+        guideBear.addEventListener("click", () => {
+            const level = levels[currentLevel];
+
+            // animazione
+            guideBear.classList.add("talking");
+            setTimeout(() => guideBear.classList.remove("talking"), 400);
+
+            // testo guida completo
+            const text = level.instruction;
+
+            setGuide(text);
+            speak(text);
+        });
+
+        let currentLevel = 0;
+        let placedState = {};
+        let toolMap = {};
+        let earnedStars = 0;
+
+        const toolsContainer = document.getElementById("tools");
+        const nextBtn = document.getElementById("nextBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const starsBar = document.getElementById("starsBar");
+        const guideBubble = document.getElementById("guideBubble");
+        const diplomaOverlay = document.getElementById("diplomaOverlay");
+        const diplomaBtn = document.getElementById("diplomaBtn");
+
+        function speak(text) {
+            speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = "it-IT";
+            msg.rate = 0.9;
+            speechSynthesis.speak(msg);
+        }
+
+        function setGuide(text) {
+            guideBubble.textContent = text || "Trascina gli oggetti nel posto giusto.";
+        }
+
+        function renderStars() {
+            starsBar.innerHTML = "";
+            for (let i = 0; i < levels.length; i++) {
+                const star = document.createElement("div");
+                star.className = "star" + (i < earnedStars ? " earned" : "");
+                star.textContent = "⭐";
+                starsBar.appendChild(star);
+            }
+        }
+
+        function setMessage(main, sub) {
+            document.getElementById("message").textContent = main || "";
+            document.getElementById("submessage").textContent = sub || "";
+        }
+
+        function setupLevel(index) {
+            speechSynthesis.cancel();
+
+            currentLevel = index;
+            const level = levels[index];
+            placedState = {};
+            toolMap = {};
+
+            document.getElementById("levelTitle").textContent = level.title;
+            document.getElementById("instruction").textContent = level.instruction;
+            document.getElementById("sceneMain").textContent = level.sceneMain;
+            document.getElementById("sceneMark1").textContent = level.mark1;
+            document.getElementById("sceneMark2").textContent = level.mark2;
+            document.getElementById("rightBox").innerHTML = level.rightBox;
+
+            document.getElementById("placed1").style.display = "none";
+            document.getElementById("placed2").style.display = "none";
+            document.getElementById("placed3").style.display = "none";
+
+            document.getElementById("placed1").textContent = "";
+            document.getElementById("placed2").textContent = "";
+            document.getElementById("placed3").textContent = "";
+
+            setMessage("", "");
+            setGuide(level.guide);
+            nextBtn.style.display = "none";
+            restartBtn.style.display = "none";
+
+            toolsContainer.innerHTML = "";
+
+            ["zone1", "zone2", "zone3"].forEach(zoneId => {
+                const zone = document.getElementById(zoneId);
+                zone.dataset.accept = "";
+            });
+
+            level.targets.forEach(target => {
+                placedState[target.id] = false;
+                toolMap[target.id] = target;
+
+                const zone = document.getElementById(target.zone);
+                zone.dataset.accept = target.id;
+
+                const tool = document.createElement("div");
+                tool.className = "tool";
+                tool.draggable = true;
+                tool.dataset.item = target.id;
+                tool.id = "tool-" + target.id;
+                tool.innerHTML = `${target.emoji}<span>${target.label}</span>`;
+
+                tool.addEventListener("dragstart", e => {
+                    e.dataTransfer.setData("text/plain", target.id);
+                    tool.classList.add("dragging");
+                });
+
+                tool.addEventListener("dragend", () => {
+                    tool.classList.remove("dragging");
+                });
+
+                toolsContainer.appendChild(tool);
+            });
+
+            renderStars();
+            setTimeout(() => {
+                const intro = "" + level.instruction;
+
+                setGuide(intro);
+                speak(intro);
+
+                // animazione orso
+                guideBear.classList.add("talking");
+                setTimeout(() => guideBear.classList.remove("talking"), 400);
+
+            }, 500);
+            let firstInteraction = false;
+
+            document.addEventListener("click", () => {
+                if (!firstInteraction) {
+                    firstInteraction = true;
+
+                    const level = levels[currentLevel];
+                    const intro = "" + level.instruction;
+
+                    setGuide(intro);
+                    speak(intro);
+
+                    guideBear.classList.add("talking");
+                    setTimeout(() => guideBear.classList.remove("talking"), 400);
+                }
+            });
+        }
+
+        function placeItem(itemId) {
+            const target = toolMap[itemId];
+            if (!target) return;
+
+            placedState[itemId] = true;
+
+            const tool = document.getElementById("tool-" + itemId);
+            if (tool) tool.style.visibility = "hidden";
+
+            const placed = document.getElementById(target.placed);
+            placed.textContent = target.placedEmoji;
+            placed.style.display = "block";
+
+            setMessage(target.successMain, target.successSub);
+            setGuide(target.successSub);
+            speak(target.voice);
+
+            checkWin();
+        }
+
+        function wrongDrop() {
+            setMessage("Ops! Non è il posto giusto.", "Riprova con calma.");
+            setGuide("Riprova con calma. Guarda bene dove mettere l'oggetto.");
+            speak("Ops! Non è il posto giusto. Riprova con calma.");
+        }
+
+        function showDiploma() {
+            diplomaOverlay.style.display = "flex";
+            setGuide("Hai vinto il diploma di Piccolo Soccorritore!");
+            speak("Complimenti! Hai vinto il diploma di Piccolo Soccorritore.");
+        }
+
+        function checkWin() {
+            const allDone = Object.values(placedState).every(v => v === true);
+            if (!allDone) return;
+
+            const level = levels[currentLevel];
+            if (earnedStars < currentLevel + 1) {
+                earnedStars = currentLevel + 1;
+            }
+
+            renderStars();
+            setMessage(level.finalMain, level.finalSub);
+            setGuide(level.finalSub);
+            speak(level.finalVoice);
+
+            if (currentLevel < levels.length - 1) {
+                nextBtn.style.display = "inline-block";
+            } else {
+                restartBtn.style.display = "inline-block";
+                setTimeout(showDiploma, 1200);
+            }
+        }
+
+        document.querySelectorAll(".drop-zone").forEach(zone => {
+            zone.addEventListener("dragover", e => {
+                e.preventDefault();
+                zone.classList.add("highlight");
+            });
+
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("highlight");
+            });
+
+            zone.addEventListener("drop", e => {
+                e.preventDefault();
+                zone.classList.remove("highlight");
+
+                const itemId = e.dataTransfer.getData("text/plain");
+                const accepted = zone.dataset.accept;
+
+                if (itemId === accepted && placedState[itemId] === false) {
+                    placeItem(itemId);
+                } else {
+                    wrongDrop();
+                }
+            });
+        });
+
+        nextBtn.addEventListener("click", () => {
+            setupLevel(currentLevel + 1);
+        });
+
+        restartBtn.addEventListener("click", () => {
+            earnedStars = 0;
+            renderStars();
+            setupLevel(0);
+        });
+
+        diplomaBtn.addEventListener("click", () => {
+            diplomaOverlay.style.display = "none";
+            earnedStars = 0;
+            renderStars();
+            setupLevel(0);
+        });
+
+        renderStars();
+        setupLevel(0);</script>
+</body>
+</html>
