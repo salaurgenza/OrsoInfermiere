@@ -916,6 +916,26 @@
             .success-msg.show {
                 display: block;
             }
+
+        .btn-green {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+            .btn-green:hover {
+                background-color: #218838;
+            }
+
+            .btn-green:disabled {
+                background-color: #9fd3b3;
+                cursor: not-allowed;
+            }
     </style>
 </head>
 <body>
@@ -988,16 +1008,16 @@
             </section>
             <section id="completeScreen" class="complete-box hidden" style="text-align:center;">
 
-    <img src="image3.png"
-         style="width:100%; max-width:600px; border-radius:20px; margin-bottom:20px;">
+                <img src="image3.png"
+                     style="width:100%; max-width:600px; border-radius:20px; margin-bottom:20px;">
 
-    <br>
+                <br>
 
-    <button id="playAgainBtn" class="btn btn-primary">
-        Gioca di nuovo
-    </button>
+                <button id="playAgainBtn" class="btn btn-primary">
+                    Gioca di nuovo
+                </button>
 
-</section>
+            </section>
         </div>
     </div>
     
@@ -1006,6 +1026,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1><span style="color:red">CHIAMIAMO</span> IL 112</h1>
                 <div style="display:flex; gap:10px;">
+                    <button id="next112" class="btn-green">AVANTI</button>
                     <button class="btn-red" onclick="restart112()">Ricomincia</button>
                     <button class="btn-red" onclick="chiudiSchermata112()">Chiudi</button>
                 </div>
@@ -1686,13 +1707,15 @@
             if (callStarted112) return;
 
             callStarted112 = true;
+
             document.getElementById('placeholder112').style.display = "none";
             document.getElementById('status112').textContent = "Chiamata in corso...";
             document.getElementById('messages112').innerHTML = "";
 
             let i = 0;
+            const nextBtn = document.getElementById("next112");
 
-            function nextMsg() {
+            function mostraMessaggio() {
 
                 if (i < sequence112.length) {
 
@@ -1707,11 +1730,9 @@
 
                     i++;
 
-                    setTimeout(() => {
-                        nextMsg();
-                    }, 10000);
-
                 } else {
+
+                    nextBtn.style.display = "none";
 
                     document.getElementById('successBox112').classList.add('show');
 
@@ -1727,7 +1748,15 @@
                 }
             }
 
-            nextMsg();
+            // Primo messaggio automatico
+            mostraMessaggio();
+
+            // Click su AVANTI
+            nextBtn.onclick = () => {
+                mostraMessaggio();
+            };
+
+            nextBtn.style.display = "block";
         }
         function apri112() {
             document.getElementById("modal112").classList.add("active");
