@@ -558,11 +558,11 @@
             /* L'IMMAGINE INTERNA: LA VERA VIA DI MEZZO PERFETTA */
             .scene-card img {
                 /* 🔴 IMPOSTATE AL 68%: Né troppo piccole (50%) né giganti (80%) */
-                width: 140%;
-                height: 140%;
+                width: 120%;
+                height: 120%;
                 object-fit: contain; /* Mostra tutta l'immagine senza mai tagliarla */
                 margin: auto; /* La mantiene perfettamente centrata nel container */
-                border-radius: 20px;
+                border-radius: 50px;
                 box-shadow: none;
                 border: none;
                 display: block;
@@ -612,13 +612,13 @@
         }
 
         .scene-caption {
-            font-size: 21px;
-            font-weight: 800;
-            color: var(--dark);
-            line-height: 1.45;
+            font-size: 35px; /* Portato a 32px per renderlo gigante e immediato */
+            font-weight: 1000; /* Molto marcato per facilitare la lettura */
+            color: #2ec4b6;
+            line-height: 1.4; /* Spaziatura perfetta tra le righe */
             margin: 0;
+            letter-spacing: -0.3px; /* Compatta leggermente le lettere per un look moderno stile app */
         }
-
         /* CARD DELLE RISPOSTE */
         .answers-card {
             border-radius: var(--radius-app);
@@ -1053,8 +1053,8 @@
             .question-bar-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px;
-                gap: 12px;
+                padding: 50px;
+                gap: 22px;
             }
         }
     </style>
