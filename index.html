@@ -67,20 +67,20 @@
             width: 100%;
             min-height: 100vh;
             display: flex;
-            align-items: stretch; /* Estende il contenuto in altezza */
+            align-items: stretch;
             justify-content: center;
-            padding: 0; /* Rimuove i bordi vuoti esterni */
+            padding: 0;
             perspective: 1000px;
         }
 
         .card {
-            width: 100%; /* Occupa tutta la larghezza disponibile della pagina */
-            min-height: 100vh; /* Se desideri che occupi anche tutta l'altezza dello schermo */
+            width: 100%;
+            min-height: 100vh;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-radius: 0; /* Opzionale: imposta a 0 se vuoi eliminare gli angoli arrotondati ora che è a schermo intero */
-            box-shadow: none; /* Rimuove l'ombra esterna non più necessaria a schermo intero */
-            border: none; /* Rimuove il bordo bianco per toccare i margini netti del browser */
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
             overflow: hidden;
             position: relative;
             transform-style: preserve-3d;
@@ -105,14 +105,14 @@
 
         /* ==================== COVER SCHERMATA INIZIALE ==================== */
         .cover {
-    min-height: 100vh; /* Copre l'intera altezza dello schermo */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    background: radial-gradient(circle at 18% 12%, rgba(255,214,107,.45), transparent 16%), radial-gradient(circle at 88% 10%, rgba(255,180,180,.35), transparent 18%), linear-gradient(180deg, #ffffff 0%, #f6fdff 100%);
-    padding: 34px;
-}
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: radial-gradient(circle at 18% 12%, rgba(255,214,107,.45), transparent 16%), radial-gradient(circle at 88% 10%, rgba(255,180,180,.35), transparent 18%), linear-gradient(180deg, #ffffff 0%, #f6fdff 100%);
+            padding: 34px;
+        }
 
         .cover-left {
             display: flex;
@@ -231,7 +231,7 @@
                 transform: scaleY(1);
             }
 
-            95% {
+            55% {
                 transform: scaleY(0.1);
             }
         }
@@ -524,56 +524,130 @@
             border: 2px solid #bae6fd;
         }
 
-        /* Bento Grid Layout */
+        /* Bento Grid Layout - Ottimizzato per separare l'immagine dalle risposte */
         .level-box {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 30px;
+            margin-bottom: 24px;
         }
 
-        .scene-card, .answers-card {
+        /* CARD IMMAGINE PULITA: Unico contenitore con position: relative */
+        /* CARD IMMAGINE INTEGRATA (UNICO CONTENITORE PULITO) */
+        .scene-card {
+            position: relative; /* Essenziale per posizionare le aree di drag-drop sopra l'immagine */
             border-radius: var(--radius-app);
             background: white;
-            padding: 24px;
+            padding: 0; /* Rimosso il padding: l'immagine ora respira e occupa tutto lo spazio */
             box-shadow: var(--shadow-soft);
             border: 3px solid #f1f5f9;
             transition: var(--transition-bounce);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 480px;
+            overflow: hidden; /* Taglia l'immagine sui bordi arrotondati della card */
         }
 
-            .scene-card:hover, .answers-card:hover {
+            .scene-card:hover {
                 transform: translateY(-4px);
                 box-shadow: 0 25px 50px rgba(0,0,0,0.08);
             }
 
             .scene-card img {
                 width: 100%;
-                border-radius: 20px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-                object-fit: cover;
-                max-height: 480px;
+                height: 100%;
+                min-height: 480px;
+                object-fit: cover; /* L'immagine riempie la card in modo fluido senza cornici bianche interne */
+                border-radius: 0; /* Rimosso il bordo arrotondato interno */
+                box-shadow: none; /* Rimossa l'ombra interna duplicata */
+                display: block;
             }
 
+        /* Le aree di trascinamento (drop-overlay) ora si adattano al millimetro sopra l'immagine a pieno schermo */
+        .drop-overlay-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+       
+        /* NUOVA BARRA DELLA DOMANDA IN FONDO A TUTTO SPAZIO */
+        .question-bar-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f6fdff 100%);
+            border: 3px solid #e0f2fe;
+            border-radius: var(--radius-app);
+            padding: 24px 30px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: cardEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+            transition: var(--transition-bounce);
+        }
+
+            .question-bar-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+            }
+
+        /* Avatar circolare dell'orsetto parlante */
+        .bear-avatar-mini {
+            font-size: 36px;
+            background: #ffebeb;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 6px 15px rgba(255, 71, 71, 0.12);
+            border: 2px solid #ffccd5;
+            flex-shrink: 0;
+        }
+
         .scene-caption {
-            margin-top: 20px;
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 800;
             color: var(--dark);
-            line-height: 1.4;
+            line-height: 1.45;
+            margin: 0;
         }
 
-        .answers-card h2 {
-            margin-top: 0;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 28px;
-            color: var(--red);
+        /* CARD DELLE RISPOSTE */
+        .answers-card {
+            border-radius: var(--radius-app);
+            background: white;
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            border: 3px solid #f1f5f9;
+            transition: var(--transition-bounce);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .answers-card p {
-            font-size: 18px;
-            color: #64748b;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
+            .answers-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+            }
+
+            .answers-card h2 {
+                margin-top: 0;
+                font-family: 'Fredoka', sans-serif;
+                font-size: 28px;
+                color: var(--red);
+            }
+
+            .answers-card p {
+                font-size: 18px;
+                color: #64748b;
+                font-weight: 600;
+                margin-bottom: 24px;
+            }
 
         /* ELEMENTI RISPOSTE (OPTION BUTTONS) */
         .option {
@@ -740,6 +814,7 @@
         .actions {
             display: flex;
             gap: 16px;
+            margin-top: auto;
         }
 
         .btn {
@@ -947,7 +1022,7 @@
         /* RESPONSIVENESS */
         @media (max-width: 900px) {
             .cover {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 text-align: center;
                 padding: 24px;
             }
@@ -958,6 +1033,26 @@
 
             .level-box {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .scene-card {
+                min-height: auto;
+                padding: 16px;
+            }
+
+            .drop-overlay-container {
+                top: 16px;
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+            }
+
+            .question-bar-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+                gap: 12px;
             }
         }
     </style>
@@ -1020,13 +1115,8 @@
 
                 <div class="level-box">
                     <div class="scene-card">
-                        <div style="position: relative;">
-                            <img id="animalImage" src="image.png" alt="Scena di soccorso" />
-                            <div id="dropOverlay" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none;"></div>
-                        </div>
-                        <div id="animalText" class="scene-caption">
-                            Il maialino si è fatto male al ginocchio mentre stava dipingendo. Cosa dobbiamo fare?
-                        </div>
+                        <img id="animalImage" src="image.png" alt="Scena di soccorso" />
+                        <div id="dropOverlay" class="drop-overlay-container"></div>
                     </div>
 
                     <div class="answers-card">
@@ -1042,6 +1132,13 @@
                             <button id="resetBtn" class="btn btn-secondary">Ricomincia</button>
                         </div>
                     </div>
+                </div>
+
+                <div class="question-bar-card">
+                    <div class="bear-avatar-mini">🐻</div>
+                    <p id="animalText" class="scene-caption">
+                        Il maialino si è fatto male al ginocchio mentre stava dipingendo. Cosa dobbiamo fare?
+                    </p>
                 </div>
             </section>
 
@@ -1103,7 +1200,7 @@
 
         const animalImage = document.querySelector('.scene-card img');
         const animalCaption = document.querySelector('.scene-caption');
-        const levelTitle = document.querySelector('.brand h1');
+        const levelTitle = document.getElementById('levelNumber');
         const cardTitle = document.querySelector('.answers-card h2');
 
         let selected = new Set();
@@ -1282,7 +1379,7 @@
             const msg = new SpeechSynthesisUtterance(testo);
             msg.lang = "it-IT";
             msg.rate = 0.8;
-            msg.pitch = 1.1; // Tono leggermente più allegro e "app style"
+            msg.pitch = 1.1;
 
             msg.onend = () => { if (typeof onEnd === "function") onEnd(); };
             msg.onerror = () => { if (typeof onEnd === "function") onEnd(); };
@@ -1430,7 +1527,6 @@
             el.dataset.id = dati.elementoCorretto.id;
             el.innerHTML = `<img src="${dati.elementoCorretto.img}" alt="${dati.elementoCorretto.testo}"><p>${dati.elementoCorretto.testo}</p>`;
 
-            // Eventi touch per dispositivi mobile (essenziali per simulare un'app nativa)
             el.addEventListener("dragstart", () => el.classList.add("dragging"));
             el.addEventListener("dragend", () => el.classList.remove("dragging"));
             container.appendChild(el);
@@ -1529,7 +1625,7 @@
 
         function caricaLivello(index) {
             const dati = livelli[index];
-            levelTitle.innerHTML = `<span class="red">Orso infermiere</span> <span class="dark">- Livello ${index + 1}</span>`;
+            levelTitle.textContent = `- Livello ${index + 1}`;
             cardTitle.textContent = `Livello ${index + 1} - ${dati.nome.charAt(0).toUpperCase() + dati.nome.slice(1)}`;
             animalImage.src = dati.immagine;
             animalImage.alt = `Livello ${index + 1}`;
