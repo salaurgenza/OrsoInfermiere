@@ -38,25 +38,24 @@
             overflow-x: hidden;
         }
 
-            /* SFONDO ANIMATO DI PARTICELLE DIETRO L'APP */
-            body::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background-image: radial-gradient(circle, #2ec4b6 10%, transparent 11%), radial-gradient(circle, #ffb703 10%, transparent 11%);
-                background-size: 80px 80px;
-                background-position: 0 0, 40px 40px;
-                opacity: 0.05;
-                z-index: -1;
-                animation: backgroundMove 20s linear infinite;
-            }
+        /* SFONDO ANIMATO DI PARTICELLE DIETRO L'APP */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #2ec4b6 10%, transparent 11%), radial-gradient(circle, #ffb703 10%, transparent 11%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.05;
+            z-index: -1;
+            animation: backgroundMove 20s linear infinite;
+        }
 
         @keyframes backgroundMove {
             0% {
                 background-position: 0 0, 40px 40px;
             }
-
             100% {
                 background-position: 80px 80px, 120px 120px;
             }
@@ -92,7 +91,6 @@
                 transform: translateY(50px) scale(0.95);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0) scale(1);
                 opacity: 1;
@@ -133,7 +131,6 @@
             0%, 100% {
                 transform: translateY(0px) rotate(0deg);
             }
-
             50% {
                 transform: translateY(-15px) rotate(1deg);
             }
@@ -162,7 +159,6 @@
             0%, 100% {
                 transform: translateY(0) rotate(0);
             }
-
             50% {
                 transform: translateY(4px) rotate(-1deg);
             }
@@ -178,16 +174,16 @@
             box-shadow: inset -5px -5px 0 rgba(0,0,0,0.08);
         }
 
-            .bear-ear::after {
-                content: '';
-                position: absolute;
-                width: 36px;
-                height: 36px;
-                background: #ffabab;
-                border-radius: 50%;
-                left: 12px;
-                top: 12px;
-            }
+        .bear-ear::after {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            background: #ffabab;
+            border-radius: 50%;
+            left: 12px;
+            top: 12px;
+        }
 
         .ear-left {
             left: 55px;
@@ -207,16 +203,16 @@
             animation: blink 4s infinite;
         }
 
-            .bear-eye::after {
-                content: '';
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                background: #fff;
-                border-radius: 50%;
-                top: 3px;
-                left: 3px;
-            }
+        .bear-eye::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+        }
 
         .eye-left {
             left: 45px;
@@ -230,7 +226,6 @@
             0%, 90%, 100% {
                 transform: scaleY(1);
             }
-
             55% {
                 transform: scaleY(0.1);
             }
@@ -310,20 +305,19 @@
             animation: pulse 2s infinite;
         }
 
-            .bear-cross-badge::after {
-                content: '+';
-                font-size: 38px;
-                color: var(--red);
-                font-weight: 900;
-                line-height: 1;
-                margin-top: -4px;
-            }
+        .bear-cross-badge::after {
+            content: '+';
+            font-size: 38px;
+            color: var(--red);
+            font-weight: 900;
+            line-height: 1;
+            margin-top: -4px;
+        }
 
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.12);
             }
@@ -357,7 +351,6 @@
             0%, 100% {
                 transform: rotate(20deg);
             }
-
             50% {
                 transform: rotate(35deg);
             }
@@ -367,7 +360,6 @@
             0%, 100% {
                 transform: rotate(-20deg);
             }
-
             50% {
                 transform: rotate(-35deg);
             }
@@ -388,29 +380,29 @@
             line-height: 1.05;
         }
 
-            .cover-title span {
-                display: block;
-            }
+        .cover-title span {
+            display: block;
+        }
 
-            .cover-title .orso {
-                color: var(--red);
-                font-size: clamp(54px, 6vw, 76px);
-                text-shadow: 0 4px 0px #ffebeb;
-            }
+        .cover-title .orso {
+            color: var(--red);
+            font-size: clamp(54px, 6vw, 76px);
+            text-shadow: 0 4px 0px #ffebeb;
+        }
 
-            .cover-title .infermiere {
-                color: var(--green);
-                font-size: clamp(38px, 4.5vw, 54px);
-                letter-spacing: -1px;
-                text-shadow: 0 4px 0px #e6f9f7;
-            }
+        .cover-title .infermiere {
+            color: var(--green);
+            font-size: clamp(38px, 4.5vw, 54px);
+            letter-spacing: -1px;
+            text-shadow: 0 4px 0px #e6f9f7;
+        }
 
-            .cover-title .primo-soccorso {
-                color: var(--dark);
-                font-size: clamp(34px, 4vw, 48px);
-                font-weight: 900;
-                margin-top: 10px;
-            }
+        .cover-title .primo-soccorso {
+            color: var(--dark);
+            font-size: clamp(34px, 4vw, 48px);
+            font-weight: 900;
+            margin-top: 10px;
+        }
 
         .cover-subtitle {
             font-size: 20px;
@@ -434,29 +426,29 @@
             transform-style: preserve-3d;
         }
 
-            .start-zone:hover {
-                transform: translateY(-4px) scale(1.02);
-                box-shadow: 0 16px 0px #cc7a00, 0 25px 40px rgba(255, 159, 28, 0.45);
-            }
+        .start-zone:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 0px #cc7a00, 0 25px 40px rgba(255, 159, 28, 0.45);
+        }
 
-            .start-zone:active {
-                transform: translateY(8px);
-                box-shadow: 0 4px 0px #cc7a00, 0 10px 15px rgba(255, 159, 28, 0.2);
-            }
+        .start-zone:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0px #cc7a00, 0 10px 15px rgba(255, 159, 28, 0.2);
+        }
 
-            .start-zone strong {
-                display: block;
-                font-size: 28px;
-                font-family: 'Fredoka', sans-serif;
-                letter-spacing: 1.5px;
-                text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-            }
+        .start-zone strong {
+            display: block;
+            font-size: 28px;
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
 
-            .start-zone span {
-                font-size: 16px;
-                font-weight: 700;
-                opacity: 0.9;
-            }
+        .start-zone span {
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0.9;
+        }
 
         /* ==================== SCREEN DI GIOCO ==================== */
         .game-screen {
@@ -492,12 +484,12 @@
             justify-content: center;
         }
 
-            .badge-round::before {
-                content: "+";
-                color: white;
-                font-size: 32px;
-                font-weight: bold;
-            }
+        .badge-round::before {
+            content: "+";
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
 
         .brand h1 {
             margin: 0;
@@ -505,14 +497,14 @@
             font-size: clamp(20px, 3.2vw, 32px);
         }
 
-            .brand h1 .red {
-                color: var(--red);
-            }
+        .brand h1 .red {
+            color: var(--red);
+        }
 
-            .brand h1 .dark {
-                color: var(--dark);
-                opacity: 0.8;
-            }
+        .brand h1 .dark {
+            color: var(--dark);
+            opacity: 0.8;
+        }
 
         .progress {
             background: var(--blue-sky);
@@ -537,36 +529,34 @@
             position: relative; /* Essenziale per posizionare il drag-drop sopra */
             border-radius: var(--radius-app);
             background: white;
-            padding: 20px; /* Un filo di spazio in più per dare respiro */
+            padding: 20px; 
             box-shadow: var(--shadow-soft);
             border: 3px solid #f1f5f9;
             transition: var(--transition-bounce);
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Altezza minima ideale: si allinea a destra senza creare una voragine vuota */
             min-height: 500px;
             height: 640px;
             overflow: hidden;
         }
 
-            .scene-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 25px 50px rgba(0,0,0,0.08);
-            }
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
 
-            /* L'IMMAGINE INTERNA: LA VERA VIA DI MEZZO PERFETTA */
-            .scene-card img {
-                /* 🔴 IMPOSTATE AL 68%: Né troppo piccole (50%) né giganti (80%) */
-                width: 120%;
-                height: 120%;
-                object-fit: contain; /* Mostra tutta l'immagine senza mai tagliarla */
-                margin: auto; /* La mantiene perfettamente centrata nel container */
-                border-radius: 50px;
-                box-shadow: none;
-                border: none;
-                display: block;
-            }
+        /* L'IMMAGINE INTERNA: LA VERA VIA DI MEZZO PERFETTA */
+        .scene-card img {
+            width: 120%;
+            height: 120%;
+            object-fit: contain; 
+            margin: auto; 
+            border-radius: 50px;
+            box-shadow: none;
+            border: none;
+            display: block;
+        }
 
         /* Le aree di trascinamento si adatteranno al millimetro sulla foto ingrandita */
         .drop-overlay-container {
@@ -577,6 +567,7 @@
             bottom: 16px;
             pointer-events: none;
         }
+
         /* NUOVA BARRA DELLA DOMANDA IN FONDO A TUTTO SPAZIO */
         .question-bar-card {
             background: linear-gradient(135deg, #ffffff 0%, #f6fdff 100%);
@@ -591,10 +582,10 @@
             transition: var(--transition-bounce);
         }
 
-            .question-bar-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 25px 50px rgba(0,0,0,0.08);
-            }
+        .question-bar-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
 
         /* Avatar circolare dell'orsetto parlante */
         .bear-avatar-mini {
@@ -612,13 +603,14 @@
         }
 
         .scene-caption {
-            font-size: 35px; /* Portato a 32px per renderlo gigante e immediato */
-            font-weight: 1000; /* Molto marcato per facilitare la lettura */
+            font-size: 35px; 
+            font-weight: 1000; 
             color: #2ec4b6;
-            line-height: 1.4; /* Spaziatura perfetta tra le righe */
+            line-height: 1.4; 
             margin: 0;
-            letter-spacing: -0.3px; /* Compatta leggermente le lettere per un look moderno stile app */
+            letter-spacing: -0.3px; 
         }
+
         /* CARD DELLE RISPOSTE */
         .answers-card {
             border-radius: var(--radius-app);
@@ -632,24 +624,24 @@
             justify-content: space-between;
         }
 
-            .answers-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 25px 50px rgba(0,0,0,0.08);
-            }
+        .answers-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
 
-            .answers-card h2 {
-                margin-top: 0;
-                font-family: 'Fredoka', sans-serif;
-                font-size: 28px;
-                color: var(--red);
-            }
+        .answers-card h2 {
+            margin-top: 0;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            color: var(--red);
+        }
 
-            .answers-card p {
-                font-size: 18px;
-                color: #64748b;
-                font-weight: 600;
-                margin-bottom: 24px;
-            }
+        .answers-card p {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
 
         /* ELEMENTI RISPOSTE (OPTION BUTTONS) */
         .option {
@@ -670,30 +662,30 @@
             overflow: hidden;
         }
 
-            .option:hover {
-                transform: translateY(-2px);
-                border-color: #cbd5e1;
-                box-shadow: 0 10px 0px #cbd5e1;
-            }
+        .option:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 0px #cbd5e1;
+        }
 
-            .option:active {
-                transform: translateY(6px);
-                box-shadow: 0 2px 0px #cbd5e1;
-            }
+        .option:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px #cbd5e1;
+        }
 
-            .option.correct.selected {
-                border-color: #2ec4b6;
-                background: #e6f9f7;
-                color: var(--green-dark);
-                box-shadow: 0 8px 0px #2ec4b6;
-            }
+        .option.correct.selected {
+            border-color: #2ec4b6;
+            background: #e6f9f7;
+            color: var(--green-dark);
+            box-shadow: 0 8px 0px #2ec4b6;
+        }
 
-            .option.wrong.selected {
-                border-color: var(--red);
-                background: #ffebeb;
-                color: var(--red-dark);
-                box-shadow: 0 8px 0px var(--red);
-            }
+        .option.wrong.selected {
+            border-color: var(--red);
+            background: #ffebeb;
+            color: var(--red-dark);
+            box-shadow: 0 8px 0px var(--red);
+        }
 
         /* --- DRAG & DROP ZONE ANIMATE --- */
         .drag-items {
@@ -719,24 +711,24 @@
             gap: 10px;
         }
 
-            .drag-item:hover {
-                transform: translateY(-4px) rotate(2deg);
-                box-shadow: 0 12px 0 #cbd5e1;
-            }
+        .drag-item:hover {
+            transform: translateY(-4px) rotate(2deg);
+            box-shadow: 0 12px 0 #cbd5e1;
+        }
 
-            .drag-item img {
-                width: 100%;
-                height: 100px;
-                object-fit: contain;
-                border-radius: 12px;
-            }
+        .drag-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
 
-            .drag-item.dragging {
-                opacity: 0.5;
-                transform: scale(0.95);
-            }
+        .drag-item.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
 
-        /* Dropzones sovrapposte alla foto del livello (Mani, Maialino) */
+        /* Dropzones sovrapposte alla foto del livello */
         .drop-zone-img {
             position: absolute;
             border: 4px dashed var(--green);
@@ -755,7 +747,6 @@
                 border-color: var(--green);
                 transform: scale(1);
             }
-
             50% {
                 border-color: var(--yellow);
                 transform: scale(1.04);
@@ -779,37 +770,29 @@
             font-weight: 700;
             text-align: center;
             background: #f1f5f9;
-            border: 2px solid #e2e8f0;
             color: #475569;
+            border: 2px solid #e2e8f0;
             transition: all 0.3s ease;
         }
 
-            .feedback.ok {
-                background: #e6f9f7;
-                color: var(--green-dark);
-                border-color: #bdf2ec;
-                animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            }
+        .feedback.ok {
+            background: #e6f9f7;
+            color: var(--green-dark);
+            border-color: #bdf2ec;
+            animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-            .feedback.warn {
-                background: #fffbeb;
-                color: #b45309;
-                border-color: #fde68a;
-                animation: shake 0.5s ease;
-            }
+        .feedback.warn {
+            background: #fffbeb;
+            color: #b45309;
+            border-color: #fde68a;
+            animation: shake 0.5s ease;
+        }
 
         @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-
-            20%, 60% {
-                transform: translateX(-10px);
-            }
-
-            40%, 80% {
-                transform: translateX(10px);
-            }
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
         }
 
         /* ACTIONS BUTTONS */
@@ -836,15 +819,15 @@
             box-shadow: 0 8px 0px var(--green-dark), 0 12px 20px rgba(46, 196, 182, 0.3);
         }
 
-            .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 0px var(--green-dark), 0 15px 25px rgba(46, 196, 182, 0.4);
-            }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0px var(--green-dark), 0 15px 25px rgba(46, 196, 182, 0.4);
+        }
 
-            .btn-primary:active {
-                transform: translateY(6px);
-                box-shadow: 0 2px 0px var(--green-dark);
-            }
+        .btn-primary:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px var(--green-dark);
+        }
 
         .btn-secondary {
             background: #f1f5f9;
@@ -852,101 +835,72 @@
             box-shadow: 0 8px 0px #cbd5e1;
         }
 
-            .btn-secondary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 0px #cbd5e1;
-            }
-
-            .btn-secondary:active {
-                transform: translateY(6px);
-                box-shadow: 0 2px 0px #cbd5e1;
-            }
-
-        /* ==================== COMPLETE SCREEN ==================== */
-        .complete-box {
-            text-align: center;
-            padding: 60px 40px;
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0px #cbd5e1;
         }
 
-            .complete-box h2 {
-                font-family: 'Fredoka', sans-serif;
-                font-size: 52px;
-                color: var(--yellow);
-                margin: 20px 0;
-                text-shadow: 0 4px 0px #fff7e6;
-            }
+        .btn-secondary:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px #cbd5e1;
+        }
 
-            .complete-box p {
-                font-size: 24px;
-                color: #475569;
-                max-width: 600px;
-                margin: 0 auto 40px;
-                font-weight: 700;
-            }
-
-        /* ==================== MODALE 112 (SUPER FLUTTER PHONE UI) ==================== */
+        /* --- INTERFACCIA TASTIERA DI TELEFONATA --- */
         #modal112 {
             position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(45,36,36,0.4);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(15px);
+            z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
 
-            #modal112.active {
-                display: flex;
-            }
-
         .modal-content {
             background: white;
-            border-radius: var(--radius-app);
+            border-radius: 36px;
             width: 100%;
-            max-width: 850px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.25);
-            border: 4px solid #fff;
+            max-width: 900px;
             padding: 30px;
-            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes modalPop {
-            from {
-                transform: scale(0.8) translateY(100px);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 4px solid #f1f5f9;
         }
 
         .phone-card {
-            background: #111827;
+            background: #1e293b;
             border-radius: 28px;
             padding: 24px;
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.5);
+            border: 3px solid #334155;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .screen {
-            background: #1f2937;
+            background: #0f172a;
             border-radius: 18px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 2px solid #374151;
+            padding: 16px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #1e293b;
         }
 
         .display {
             font-family: 'Fredoka', sans-serif;
-            font-size: 3rem;
-            color: #10b981;
-            letter-spacing: 6px;
-            min-height: 60px;
-            text-shadow: 0 0 10px rgba(16,185,129,0.3);
+            font-size: 3.5rem;
+            color: #38bdf8;
+            letter-spacing: 8px;
+            height: 60px;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
         }
 
         .keypad {
@@ -972,11 +926,11 @@
             transition: all 0.1s ease;
         }
 
-            .key:active {
-                transform: translateY(4px);
-                box-shadow: 0 2px 0px #1f2937;
-                background: #4b5563;
-            }
+        .key:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #1f2937;
+            background: #4b5563;
+        }
 
         /* CHAT OPERATORE */
         .chat {
@@ -1003,15 +957,8 @@
         }
 
         @keyframes bubbleSlide {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .bubble.right {
@@ -1028,41 +975,33 @@
                 text-align: center;
                 padding: 24px;
             }
-
             .cover-left {
                 margin-bottom: 20px;
             }
-
             .level-box {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
             .scene-card {
-                min-height: auto;
+                height: 400px;
+                min-height: 400px;
+            }
+            .modal-content {
+                max-width: 95vw;
                 padding: 16px;
-            }
-
-            .drop-overlay-container {
-                top: 16px;
-                left: 16px;
-                right: 16px;
-                bottom: 16px;
-            }
-
-            .question-bar-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 50px;
-                gap: 22px;
             }
         }
     </style>
 </head>
 <body>
+
+    <audio id="audioIntro">
+        <source src="presentazione.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="app">
         <div class="card">
-
+            
             <section id="coverScreen" class="cover">
                 <div class="cover-left">
                     <div class="bear-container">
@@ -1074,47 +1013,50 @@
                     <h1 class="cover-title">
                         <span class="orso">ORSO</span>
                         <span class="infermiere">INFERMIERE</span>
-                        <span class="primo-soccorso">Primo Soccorso</span>
+                        <span class="primo-soccorso">E IL PRIMO SOCCORSO</span>
                     </h1>
-
                     <p class="cover-subtitle">
                         Ciao! mi chiamo Orso e sono un Infermiere mi prendo cura dei grandi e dei piccini quando non stanno bene.
                     </p>
-
-                    <button id="startZone" class="start-zone">
-                        <strong>INIZIA IL GIOCO</strong>
-                        <span>Tocca qui per partire!</span>
+                    <button class="start-zone" id="startBtn">
+                        <strong>INIZIA IL GIOCO!</strong>
+                        <span>Premi qui per iniziare a giocare</span>
                     </button>
                 </div>
             </section>
 
             <section id="gameScreen" class="game-screen hidden">
-                <div class="topbar">
+                <header class="topbar">
                     <div class="brand">
                         <div class="badge-round"></div>
-                        <h1><span class="red">Orso infermiere</span> <span class="dark" id="levelNumber">- Livello 1</span></h1>
+                        <h1><span class="red">PRIMO</span> <span class="dark">SOCCORSO</span></h1>
                     </div>
-                    <div class="progress" id="progressText">Risposte corrette: 0 / 2</div>
-                </div>
+                    <div class="progress" id="progressText">Livello 1</div>
+                </header>
 
                 <div class="level-box">
-                    <div class="scene-card">
-                        <img id="animalImage" src="Senza titolo.png" alt="Scena di soccorso" />
-                        <div id="dropOverlay" class="drop-overlay-container"></div>
+                    <div class="scene-card" id="sceneContainer">
+                        <img id="animalImg" src="" alt="Amico ferito">
+                        <div class="drop-overlay-container" id="dropOverlay"></div>
                     </div>
 
                     <div class="answers-card">
-                        <h2 id="cardTitle">Livello 1 - Il maialino</h2>
-                        <p id="instructionsText">Seleziona le due risposte giuste per aiutare l'animaletto.</p>
-
-                        <div id="answersContainer"></div>
-
-                        <div id="feedback" class="feedback">Scegli le due azioni corrette.</div>
-
-                        <div class="actions">
-                            <button id="checkBtn" class="btn btn-primary">Controlla</button>
-                            <button id="resetBtn" class="btn btn-secondary">Ricomincia</button>
+                        <div>
+                            <h2 id="levelTitle">Caricamento...</h2>
+                            <p id="levelInstructions">Segui le istruzioni per completare il livello.</p>
                         </div>
+                        
+                        <div id="answersContainer">
+                            </div>
+
+                        <div class="feedback" id="feedback">
+                            Trova la cura esatta per l'animaletto!
+                        </div>
+
+                        <footer class="actions">
+                            <button id="resetBtn" class="btn btn-secondary">Ricomincia</button>
+                            <button id="checkBtn" class="btn btn-primary">Controlla</button>
+                        </footer>
                     </div>
                 </div>
 
@@ -1126,12 +1068,13 @@
                 </div>
             </section>
 
-            <section id="completeScreen" class="complete-box hidden">
-                <img src="image3.png" style="width:100%; max-width:500px; border-radius:24px; box-shadow: var(--shadow-soft);">
-                <h2>COMPLIMENTI!</h2>
-                <p>Complimenti! Sei un perfetto aiutante di Orso Infermiere! Grazie per avermi aiutato a curare i miei amici.</p>
+            <section id="completeScreen" class="complete-box hidden" style="text-align: center; padding: 50px 30px;">
+                <img src="image3.png" style="width:100%; max-width:500px; border-radius:24px; box-shadow: var(--shadow-soft); margin-bottom: 30px;">
+                <h2 style="font-family:'Fredoka', sans-serif; font-size:42px; color:var(--green); margin-bottom: 20px;">COMPLIMENTI!</h2>
+                <p style="font-size:22px; font-weight:700; color:#475569; max-width:600px; margin: 0 auto 40px;">Complimenti! Sei un perfetto aiutante di Orso Infermiere! Grazie per avermi aiutato a curare i miei amici.</p>
                 <button id="playAgainBtn" class="btn btn-primary" style="max-width: 300px; padding: 20px;">Gioca di nuovo</button>
             </section>
+
         </div>
     </div>
 
@@ -1150,54 +1093,41 @@
                 <section class="phone-card">
                     <div class="screen">
                         <div class="display" id="display112"></div>
-                        <div id="status112" style="color: #9ca3af; font-weight: 700; margin-top:5px;">Digita 112</div>
+                        <div id="status112" style="color: #9ca3af; font-weight: 700; font-size: 18px;">Digita 112 per chiamare i soccorsi</div>
                     </div>
-                    <div class="keypad" id="keypad112"></div>
-                    <div style="margin-top: 20px;">
-                        <button class="btn btn-primary" style="width: 100%; background: #10b981; box-shadow: 0 8px 0 #059669;" id="callBtn112" onclick="startCall112()">CHIAMA</button>
+                    <div class="keypad">
+                        <button class="key" onclick="pressKey('1')">1</button>
+                        <button class="key" onclick="pressKey('2')">2</button>
+                        <button class="key" onclick="pressKey('3')">3</button>
+                        <button class="key" onclick="pressKey('4')">4</button>
+                        <button class="key" onclick="pressKey('5')">5</button>
+                        <button class="key" onclick="pressKey('6')">6</button>
+                        <button class="key" onclick="pressKey('7')">7</button>
+                        <button class="key" onclick="pressKey('8')">8</button>
+                        <button class="key" onclick="pressKey('9')">9</button>
+                        <button class="key" style="background:#dc2626; color:white;" onclick="clearDisplay()">C</button>
+                        <button class="key" onclick="pressKey('0')">0</button>
+                        <button class="key" style="background:#16a34a; color:white; font-size:1.4rem;" onclick="dial112()">📞</button>
                     </div>
                 </section>
 
                 <section style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div class="chat" id="chatBox112">
-                        <div id="placeholder112" style="text-align:center; color:#94a3b8; font-weight:700; margin-top:60px;">Componi 112 sul telefono per avviare la chiamata di emergenza.</div>
-                        <div id="messages112"></div>
+                    <div class="chat" id="messages112">
+                        </div>
+                    <div id="placeholder112" style="text-align: center; color: #9ca3af; font-weight:700; font-size: 18px;">
+                        Componi il numero e avvia la chiamata per parlare con l'operatore.
                     </div>
-                    <div id="successBox112" class="feedback ok" style="display:none; margin:0;">⭐ Complimenti! Hai chiamato correttamente i soccorsi. Torniamo dal nostro amico...</div>
-                    <div id="hint112" style="font-size: 15px; color: #64748b; font-weight: 700; text-align: center;">Segui attentamente le indicazioni dell'operatore.</div>
+                    <div id="successBox112" class="feedback ok" style="display: none; font-size: 20px;">
+                        Grande! Hai chiamato il 112 con successo! I soccorsi stanno arrivando!
+                    </div>
                 </section>
             </div>
         </div>
     </div>
 
     <script>
-
-
-        const coverScreen = document.getElementById('coverScreen');
-        const gameScreen = document.getElementById('gameScreen');
-        const completeScreen = document.getElementById('completeScreen');
-        const startZone = document.getElementById('startZone');
-        const checkBtn = document.getElementById('checkBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const playAgainBtn = document.getElementById('playAgainBtn');
-        const feedback = document.getElementById('feedback');
-        const progressText = document.getElementById('progressText');
-        const answersContainer = document.getElementById('answersContainer');
-        const instructionsText = document.getElementById('instructionsText');
-
-        const animalImage = document.querySelector('.scene-card img');
-        const animalCaption = document.querySelector('.scene-caption');
-        const levelTitle = document.getElementById('levelNumber');
-        const cardTitle = document.querySelector('.answers-card h2');
-
-        let selected = new Set();
-        let audioMP3 = null;
-        let livelloCorrente = 0;
-        let audioSbloccato = false;
-        let dragState = {};
-
+        // --- ARRAY DEI LIVELLI ORIGINALE E RIPRISTINATO ---
         const livelli = [
-
             // 1️⃣ LAVAGGIO MANI
             {
                 tipo: "dragdrop",
@@ -1294,7 +1224,6 @@
                 ],
                 risposteCorrette: ["chiamare_112", "calma"]
             },
-            
             // 7️⃣ GATTA
             {
                 tipo: "quiz",
@@ -1312,7 +1241,6 @@
                 ],
                 risposteCorrette: ["adulto", "riposo"]
             },
-           
             // 6️⃣ CANE
             {
                 tipo: "quiz",
@@ -1332,82 +1260,161 @@
             }
         ];
 
+        // --- VARIABILI DI GIOCO ---
+        let livelloCorrente = 0;
+        let selected = new Set();
+        let dragState = {}; // Salva l'associazione dropzone -> dragItem id
+        let audioMP3 = null; // Gestirà l'istanza dell'audio MP3 della scena corrente
+        let giocoInCorso = false; // Flag per bloccare l'autoplay iniziale in caso di refresh/riavvii
+
+        // --- DOM ELEMENTS ---
+        const coverScreen = document.getElementById('coverScreen');
+        const gameScreen = document.getElementById('gameScreen');
+        const completeScreen = document.getElementById('completeScreen');
+        
+        const startZone = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const checkBtn = document.getElementById('checkBtn');
+        const playAgainBtn = document.getElementById('playAgainBtn');
+
+        const levelTitle = document.getElementById('levelTitle');
+        const levelInstructions = document.getElementById('levelInstructions');
+        const animalImg = document.getElementById('animalImg');
+        const animalText = document.getElementById('animalText');
+        const progressText = document.getElementById('progressText');
+        const answersContainer = document.getElementById('answersContainer');
+        const feedback = document.getElementById('feedback');
+
+        // --- FUNZIONI DI GESTIONE AUDIO MP3 ---
         function fermaAudio() {
             if (audioMP3) {
                 audioMP3.pause();
                 audioMP3.currentTime = 0;
+                audioMP3 = null;
             }
-            window.speechSynthesis.cancel();
         }
 
-        function riproduciAudio(nomeFile, onEnded = null) {
-            if (!nomeFile) {
-                if (typeof onEnded === "function") onEnded();
-                return;
-            }
+        function riproduciAudioLivello(fileAudio) {
             fermaAudio();
-            audioMP3 = new Audio(nomeFile);
-            if (typeof onEnded === "function") {
-                audioMP3.addEventListener("ended", () => {
-                    setTimeout(onEnded, 250);
-                }, { once: true });
+            if (fileAudio) {
+                audioMP3 = new Audio(fileAudio);
+                audioMP3.play().catch(err => {
+                    console.log("Autoplay bloccato o file audio non trovato: ", fileAudio);
+                });
             }
-            audioMP3.play().catch(err => {
-                console.error("Errore riproduzione audio:", nomeFile, err);
-                if (typeof onEnded === "function") onEnded();
-            });
         }
 
-        function parlaStandard(testo, onEnd = null) {
-            if (!testo) {
-                if (onEnd) onEnd();
-                return;
+        // Funzione helper per sintesi vocale di fallback
+        function parlaStandard(testo, onEndCallback) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(testo);
+                u.lang = 'it-IT';
+                u.rate = 1.0;
+                if (onEndCallback) {
+                    u.onend = onEndCallback;
+                }
+                window.speechSynthesis.speak(u);
+            } else if (onEndCallback) {
+                onEndCallback();
             }
-            if (audioMP3) audioMP3.pause();
-            window.speechSynthesis.cancel();
-
-            const msg = new SpeechSynthesisUtterance(testo);
-            msg.lang = "it-IT";
-            msg.rate = 0.8;
-            msg.pitch = 1.1;
-
-            msg.onend = () => { if (typeof onEnd === "function") onEnd(); };
-            msg.onerror = () => { if (typeof onEnd === "function") onEnd(); };
-            window.speechSynthesis.speak(msg);
         }
 
-        function sbloccaAudio() {
-            if (audioSbloccato) return;
-            audioSbloccato = true;
-            const audioVuoto = new Audio();
-            audioVuoto.play().then(() => audioVuoto.pause()).catch(() => { });
+        // --- INIZIALIZZAZIONE E AVVIO DEL LIVELLO ---
+        function startGame() {
+            giocoInCorso = true;
+            // Interrompi e disattiva definitivamente l'audio di presentazione
+            const audioIntro = document.getElementById('audioIntro');
+            if (audioIntro) {
+                audioIntro.pause();
+                audioIntro.currentTime = 0;
+                audioIntro.src = ""; // Eliminiamo la sorgente per essere sicuri che non riparta
+            }
+
+            livelloCorrente = 0;
+            coverScreen.classList.add('hidden');
+            completeScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            caricaLivello();
+        }
+
+        function caricaLivello() {
+            selected.clear();
+            dragState = {};
+            feedback.className = 'feedback';
+
+            const dati = livelli[livelloCorrente];
+
+            // 1. Aggiorna l'immagine principale con quella del livello corrente
+            const imgElement = document.getElementById("animalImg");
+            if (imgElement) {
+                imgElement.src = dati.immagine;
+            }
+
+            // 2. Svuota e DISATTIVA completamente l'overlay di Drag & Drop per evitare che i cerchi rimangano visibili
+            const overlay = document.getElementById("dropOverlay");
+            if (overlay) {
+                overlay.innerHTML = "";
+                overlay.style.pointerEvents = "none"; // Disattiva i click/trascinamenti sull'immagine per i quiz standard
+            }
+
+            // 3. Aggiorna i testi descrittivi in basso e in alto
+            animalText.textContent = dati.domanda;
+            levelTitle.textContent = dati.nome.toUpperCase();
+
+            // 4. Avvia l'audio del livello corrente
+            riproduciAudioLivello(dati.audioScena);
+
+            // 5. Mostra il messaggio di aiuto iniziale corretto in base al tipo di livello
+            if (dati.tipo === "dragdrop") {
+                feedback.textContent = 'Sposta sulla foto i 4 passaggi del lavaggio mani ordinandoli.';
+            } else if (dati.tipo === "dragdrop_singolo") {
+                feedback.textContent = 'Sposta il cerotto direttamente sul ginocchio ferito.';
+            } else {
+                feedback.textContent = 'Trova le soluzioni giuste.';
+            }
+
+            renderAnswers();
+            updateProgress();
+        }
+
+        function renderAnswers() {
+            const dati = livelli[livelloCorrente];
+            answersContainer.innerHTML = "";
+
+            if (dati.tipo === "quiz") {
+                renderQuizOptions(dati);
+            } else if (dati.tipo === "dragdrop_singolo") {
+                renderDragDropSingolo(dati);
+            } else if (dati.tipo === "dragdrop") {
+                renderDragDrop(dati);
+            }
         }
 
         function updateProgress() {
             const dati = livelli[livelloCorrente];
             if (dati.tipo === "quiz") {
                 const correctSelected = Array.from(selected).filter(id => dati.risposteCorrette.includes(id)).length;
-                progressText.textContent = `Risposte corrette: ${correctSelected} / ${dati.maxSelezioni}`;
+                progressText.textContent = `Risposte: ${correctSelected} / ${dati.maxSelezioni}`;
             } else if (dati.tipo === "dragdrop_singolo") {
                 progressText.textContent = `Completato: ${dragState["vittoria"] ? 1 : 0} / 1`;
             } else {
                 const riempite = Object.keys(dragState).filter(k => dragState[k]).length;
-                progressText.textContent = `Passaggi inseriti: ${riempite} / 4`;
+                progressText.textContent = `Passaggi: ${riempite} / 4`;
             }
         }
 
         function resetLevel() {
+            fermaAudio();
             selected.clear();
             dragState = {};
             feedback.className = 'feedback';
-
             const dati = livelli[livelloCorrente];
-            feedback.textContent = dati.tipo === "dragdrop"
-                ? 'Sposta sulla foto i 4 passaggi del lavaggio mani ordinandoli.'
-                : dati.tipo === "dragdrop_singolo"
-                    ? 'Sposta il cerotto direttamente sul ginocchio ferito.'
-                    : 'Trova le soluzioni giuste.';
-
+            feedback.textContent = dati.tipo === "dragdrop" ? 'Sposta sulla foto i 4 passaggi del lavaggio mani ordinandoli.' : dati.tipo === "dragdrop_singolo" ? 'Sposta il cerotto direttamente sul ginocchio ferito.' : 'Trova le soluzioni giuste.';
+            
+            // Riparte l'audio MP3 daccapo
+            riproduciAudioLivello(dati.audioScena);
+            
             renderAnswers();
             updateProgress();
         }
@@ -1416,6 +1423,9 @@
             return [...arr].sort(() => Math.random() - 0.5);
         }
 
+        // --- RENDERIZZAZIONE DELLE TIPOLOGIE DI GIOCO ---
+
+        // 1. QUIZ (SELEZIONE MULTIPLA O CON SCELTA 112)
         function renderQuizOptions(dati) {
             answersContainer.innerHTML = "";
             dati.opzioni.forEach(opt => {
@@ -1423,13 +1433,15 @@
                 btn.className = "option";
                 btn.dataset.id = opt.id;
                 btn.textContent = opt.testo;
-
+                
+                // Se si passa sopra con il mouse legge la risposta
                 btn.addEventListener("mouseenter", () => parlaStandard(opt.testo));
+                
                 btn.addEventListener("click", () => {
                     const id = opt.id;
                     const eCorretta = dati.risposteCorrette.includes(id);
 
-                    if (id === "chiamare_112") {
+                    if (id === "chiamare_112" || id === "chiamare_112_alt") {
                         apriSchermata112();
                         answersContainer.querySelectorAll(".option").forEach(b => {
                             b.classList.add('disabled');
@@ -1463,86 +1475,102 @@
                 btn.classList.remove("selected", "correct", "wrong");
                 if (selected.has(id)) {
                     btn.classList.add("selected");
-                    btn.classList.add(dati.risposteCorrette.includes(id) ? "correct" : "wrong");
+                    if (dati.risposteCorrette.includes(id)) {
+                        btn.classList.add("correct");
+                    } else {
+                        btn.classList.add("wrong");
+                    }
                 }
             });
         }
 
+        // 2. DRAG & DROP SINGOLO (CEROTTO SUL MAIALINO)
         function renderDragDropSingolo(dati) {
             answersContainer.innerHTML = "";
             const overlay = document.getElementById("dropOverlay");
             overlay.innerHTML = "";
             overlay.style.pointerEvents = "auto";
 
-            const target = document.createElement("div");
-            target.className = "drop-zone-img";
-            target.style.left = dati.target.x + "%";
-            target.style.top = dati.target.y + "%";
-            target.style.width = "90px";
-            target.style.height = "90px";
-            target.innerHTML = '<span style="font-size:14px;font-weight:900;color:var(--green-dark);">CEROTTO QUI</span>';
-
-            target.addEventListener("dragover", e => {
-                e.preventDefault();
-                target.classList.add("over");
-            });
-            target.addEventListener("dragleave", () => target.classList.remove("over"));
-            target.addEventListener("drop", e => {
-                e.preventDefault();
-                target.classList.remove("over");
-                const dragging = document.querySelector(".drag-item.dragging");
-                if (!dragging) return;
-
-                if (dragging.dataset.id === dati.elementoCorretto.id) {
-                    target.innerHTML = `<img src="${dati.elementoCorretto.img}" alt="${dati.elementoCorretto.testo}" style="width:100%;height:100%;object-fit:contain;">`;
-                    dragState["vittoria"] = true;
-                    parlaStandard("Fantastico! Medicazione completata.");
-                    dragging.style.opacity = "0.2";
-                    dragging.style.pointerEvents = "none";
-                    feedback.className = 'feedback ok';
-                    feedback.textContent = 'Ottimo lavoro! Cerotto applicato.';
-                    updateProgress();
-                    setTimeout(vaiAlLivelloSuccessivo, 2200);
-                }
-            });
-            overlay.appendChild(target);
-
             const container = document.createElement("div");
             container.className = "drag-items";
-            container.style.gridTemplateColumns = "1fr";
+            container.style.justifyContent = "center";
 
+            // Creiamo la dropzone sopra la foto del maialino
+            const zone = document.createElement("div");
+            zone.className = "drop-zone-img";
+            zone.style.left = dati.target.x + "%";
+            zone.style.top = dati.target.y + "%";
+            zone.style.width = "120px";
+            zone.style.height = "120px";
+            zone.style.border = "4px dashed var(--red)";
+            zone.innerHTML = `<div style="font-size:14px; font-weight:900; color:var(--red); text-align:center; padding:5px;">Trascina qui il cerotto</div>`;
+
+            zone.addEventListener("dragover", e => {
+                e.preventDefault();
+                zone.classList.add("over");
+            });
+            zone.addEventListener("dragleave", () => zone.classList.remove("over"));
+            zone.addEventListener("drop", e => {
+                e.preventDefault();
+                zone.classList.remove("over");
+                const draggingId = e.dataTransfer.getData("text/plain");
+                if (draggingId === dati.elementoCorretto.id) {
+                    dragState["vittoria"] = true;
+                    zone.innerHTML = `<img src="${dati.elementoCorretto.img}" style="width:100%; height:100%; object-fit:contain;">`;
+                    zone.style.border = "none";
+                    zone.style.background = "transparent";
+                    feedback.className = 'feedback ok';
+                    feedback.textContent = 'Bravissimo! Cerotto applicato!';
+                    parlaStandard("Perfetto! Il cerotto guarirà il ginocchio del maialino.");
+                    updateProgress();
+                    setTimeout(vaiAlLivelloSuccessivo, 2000);
+                } else {
+                    feedback.className = 'feedback warn';
+                    feedback.textContent = 'Attenzione! Usa l’oggetto corretto.';
+                }
+            });
+
+            overlay.appendChild(zone);
+
+            // Elemento da trascinare nella plancia destra
             const el = document.createElement("div");
             el.className = "drag-item";
             el.draggable = true;
             el.dataset.id = dati.elementoCorretto.id;
             el.innerHTML = `<img src="${dati.elementoCorretto.img}" alt="${dati.elementoCorretto.testo}"><p>${dati.elementoCorretto.testo}</p>`;
-
-            el.addEventListener("dragstart", () => el.classList.add("dragging"));
+            
+            el.addEventListener("dragstart", (e) => {
+                el.classList.add("dragging");
+                e.dataTransfer.setData("text/plain", dati.elementoCorretto.id);
+            });
             el.addEventListener("dragend", () => el.classList.remove("dragging"));
+            
             container.appendChild(el);
             answersContainer.appendChild(container);
         }
 
+        // 3. DRAG & DROP ORDINATO MULTIPLO (LAVAGGIO MANI)
         function renderDragDrop(dati) {
             answersContainer.innerHTML = "";
             const overlay = document.getElementById("dropOverlay");
             overlay.innerHTML = "";
             overlay.style.pointerEvents = "auto";
 
-            const board = document.createElement("div");
-            board.className = "drag-board";
-
             const dragItems = document.createElement("div");
             dragItems.className = "drag-items";
-            const itemsMescolati = shuffleArray(dati.elementi);
 
+            const itemsMescolati = shuffleArray(dati.elementi);
             itemsMescolati.forEach(item => {
                 const el = document.createElement("div");
                 el.className = "drag-item";
                 el.draggable = true;
                 el.dataset.id = item.id;
                 el.innerHTML = `<img src="${item.img}" alt="${item.testo}"><div>${item.testo}</div>`;
-                el.addEventListener("dragstart", () => el.classList.add("dragging"));
+                
+                el.addEventListener("dragstart", (e) => {
+                    el.classList.add("dragging");
+                    e.dataTransfer.setData("text/plain", item.id);
+                });
                 el.addEventListener("dragend", () => el.classList.remove("dragging"));
                 dragItems.appendChild(el);
             });
@@ -1572,87 +1600,24 @@
                 zone.addEventListener("drop", e => {
                     e.preventDefault();
                     zone.classList.remove("over");
-                    const dragging = document.querySelector(".drag-item.dragging");
-                    if (!dragging) return;
-
-                    const id = dragging.dataset.id;
-                    dragState[zone.dataset.slot] = id;
-
-                    const item = dati.elementi.find(x => x.id === id);
-                    zone.innerHTML = `<img src="${item.img}" style="width:100%; height:100%; object-fit:contain; border-radius:12px;">`;
-
-                    dragging.style.opacity = ".2";
-                    dragging.style.pointerEvents = "none";
-                    updateProgress();
+                    const dragId = e.dataTransfer.getData("text/plain");
+                    
+                    // Riconduce l'elemento trascinato
+                    const originaleItem = dati.elementi.find(item => item.id === dragId);
+                    if (originaleItem) {
+                        zone.innerHTML = `<img src="${originaleItem.img}" style="width:100%; height:100%; object-fit:contain; border-radius:12px;">`;
+                        dragState[String(i)] = dragId;
+                        updateProgress();
+                    }
                 });
+
                 overlay.appendChild(zone);
             }
 
-            board.appendChild(dragItems);
-            answersContainer.appendChild(board);
+            answersContainer.appendChild(dragItems);
         }
 
-        function renderAnswers() {
-            const dati = livelli[livelloCorrente];
-            instructionsText.textContent = dati.istruzioni || "";
-
-            const overlay = document.getElementById("dropOverlay");
-            const answersCard = document.querySelector('.answers-card');
-            overlay.innerHTML = "";
-            overlay.style.pointerEvents = "none";
-
-            answersCard.classList.toggle('drag-photo-only', dati.tipo === 'dragdrop' || dati.tipo === 'dragdrop_singolo');
-            checkBtn.classList.toggle('hidden', dati.tipo === 'dragdrop_singolo');
-
-            if (dati.tipo === "dragdrop_singolo") {
-                renderDragDropSingolo(dati);
-            } else if (dati.tipo === "dragdrop") {
-                renderDragDrop(dati);
-            } else {
-                renderQuizOptions(dati);
-            }
-        }
-
-        function caricaLivello(index) {
-            const dati = livelli[index];
-            levelTitle.textContent = `- Livello ${index + 1}`;
-            cardTitle.textContent = `Livello ${index + 1} - ${dati.nome.charAt(0).toUpperCase() + dati.nome.slice(1)}`;
-            animalImage.src = dati.immagine;
-            animalImage.alt = `Livello ${index + 1}`;
-            animalCaption.textContent = dati.domanda;
-
-            resetLevel();
-
-            setTimeout(() => {
-                if (dati.audioScena) {
-                    riproduciAudio(dati.audioScena);
-                } else {
-                    parlaStandard(dati.domanda);
-                }
-            }, 400);
-        }
-
-        function startGame() {
-            sbloccaAudio();
-            livelloCorrente = 0;
-            coverScreen.classList.add('hidden');
-            completeScreen.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
-            caricaLivello(livelloCorrente);
-        }
-
-        function vaiAlLivelloSuccessivo() {
-            if (livelloCorrente < livelli.length - 1) {
-                livelloCorrente++;
-                caricaLivello(livelloCorrente);
-            } else {
-                fermaAudio();
-                gameScreen.classList.add('hidden');
-                completeScreen.classList.remove('hidden');
-                parlaStandard("Evviva! Hai completato tutti i livelli con successo!");
-            }
-        }
-
+        // --- VERIFICA DELLE RISPOSTE ---
         checkBtn.addEventListener('click', () => {
             const dati = livelli[livelloCorrente];
 
@@ -1664,6 +1629,7 @@
                     parlaStandard("Inserisci tutti e quattro i passaggi.");
                     return;
                 }
+
                 const corretto = dati.ordineCorretto.every((id, i) => ordineUtente[i] === id);
                 if (corretto) {
                     feedback.className = 'feedback ok';
@@ -1678,6 +1644,16 @@
                 return;
             }
 
+            if (dati.tipo === "dragdrop_singolo") {
+                if (!dragState["vittoria"]) {
+                    feedback.className = 'feedback warn';
+                    feedback.textContent = 'Sposta il cerotto direttamente sul ginocchio del maialino per guarirlo!';
+                    parlaStandard("Trascina il cerotto sul ginocchio ferito.");
+                }
+                return;
+            }
+
+            // Caso QUIZ standard
             if (selected.size !== dati.maxSelezioni) {
                 feedback.className = 'feedback warn';
                 feedback.textContent = `Scegli ${dati.maxSelezioni} risposte.`;
@@ -1686,88 +1662,95 @@
             }
 
             const allCorrect = dati.risposteCorrette.every(id => selected.has(id)) && selected.size === dati.risposteCorrette.length;
-
             if (allCorrect) {
                 feedback.className = 'feedback ok';
                 feedback.textContent = 'Lavoro fantastico!';
                 parlaStandard("Ottimo lavoro!");
-
+                
                 const buttons = answersContainer.querySelectorAll(".option");
-                buttons.forEach(btn => { btn.classList.add('disabled'); btn.disabled = true; });
+                buttons.forEach(btn => {
+                    btn.classList.add('disabled');
+                    btn.disabled = true;
+                });
 
-                if (selected.has("chiamare_112")) {
-                    setTimeout(apriSchermata112, 1500);
-                } else {
-                    setTimeout(vaiAlLivelloSuccessivo, 1800);
-                }
+                setTimeout(vaiAlLivelloSuccessivo, 1800);
             } else {
                 feedback.className = 'feedback warn';
-                feedback.textContent = 'Non è la combinazione giusta, riprova!';
-                parlaStandard("Riprova!");
+                feedback.textContent = 'Alcune risposte sono sbagliate, prova ancora!';
+                parlaStandard("Ci sono risposte sbagliate, riprova!");
             }
         });
 
-        // --- SISTEMA TELEFONO 112 ---
+        function vaiAlLivelloSuccessivo() {
+            fermaAudio();
+            livelloCorrente++;
+            if (livelloCorrente < livelli.length) {
+                caricaLivello();
+            } else {
+                gameScreen.classList.add('hidden');
+                completeScreen.classList.remove('hidden');
+                parlaStandard("Evviva! Hai completato tutti i livelli con successo!");
+            }
+        }
+
+        // --- SISTEMA DI CHIAMATA SIMULATA 112 (OPERATORE) ---
         let typed112 = "";
         let callStarted112 = false;
         const sequence112 = [
-            "Pronto, qui centrale 112. Come ti chiami? cosa succede? come posso aiutarti?",
-            " Ho Capito, dimmi dove ti trovi.",
+            "Pronto, qui centrale 112.",
+            "Come ti chiami?",
+            "Cosa succede?",
+            "Come posso aiutarti? ",
+            "Ho Capito, dimmi dove ti trovi.",
             "Grazie mantieni la calma e resta in linea.",
             "I soccorsi stanno arrivando a tutta velocità per aiutarti!"
         ];
 
         function apriSchermata112() {
-            document.getElementById('modal112').classList.add('active');
-            restart112();
-        }
-
-        function chiudiSchermata112() {
-            document.getElementById('modal112').classList.remove('active');
-            window.speechSynthesis.cancel();
-        }
-
-        function restart112() {
             typed112 = "";
             callStarted112 = false;
             document.getElementById('display112').textContent = "";
-            document.getElementById('messages112').innerHTML = "";
+            document.getElementById('status112').textContent = "Digita 112 e premi la cornetta verde";
             document.getElementById('placeholder112').style.display = "block";
             document.getElementById('successBox112').style.display = "none";
-            document.getElementById('status112').textContent = "Digita 112";
+            document.getElementById('messages112').innerHTML = "";
             document.getElementById('next112').style.display = "none";
-            generaTastierino();
+            document.getElementById('modal112').style.display = "flex";
         }
 
-        function generaTastierino() {
-            const keypad = document.getElementById('keypad112');
-            keypad.innerHTML = "";
-            ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'].forEach(num => {
-                const btn = document.createElement('button');
-                btn.className = 'key';
-                btn.textContent = num;
-                btn.onclick = () => {
-                    if (callStarted112) return;
-                    if (!/^[0-9]$/.test(num)) return;
-                    if (typed112.length >= 3) return;
-                    typed112 += num;
-                    document.getElementById('display112').textContent = typed112;
-                };
-                keypad.appendChild(btn);
-            });
+        function chiudiSchermata112() {
+            document.getElementById('modal112').style.display = "none";
         }
 
-        function startCall112() {
+        function pressKey(num) {
+            if (callStarted112) return;
+            if (typed112.length < 3) {
+                typed112 += num;
+                document.getElementById('display112').textContent = typed112;
+            }
+        }
+
+        function clearDisplay() {
+            if (callStarted112) return;
+            typed112 = "";
+            document.getElementById('display112').textContent = "";
+        }
+
+        function restart112() {
+            apriSchermata112();
+        }
+
+        function dial112() {
             if (typed112 !== "112") {
-                parlaStandard("Attenzione, componi uno, uno, due.");
+                parlaStandard("Attenzione! Per chiamare i soccorsi componi uno, uno, due.");
                 typed112 = "";
                 document.getElementById('display112').textContent = "";
                 document.getElementById('status112').textContent = "Numero errato";
                 return;
             }
+
             if (callStarted112) return;
             callStarted112 = true;
-
             document.getElementById('placeholder112').style.display = "none";
             document.getElementById('status112').textContent = "In chiamata...";
             document.getElementById('messages112').innerHTML = "";
@@ -1787,7 +1770,7 @@
                 } else {
                     nextBtn.style.display = "none";
                     document.getElementById('successBox112').style.display = "block";
-                    parlaStandard("", () => {
+                    parlaStandard("Soccorsi allertati! Torniamo ad aiutare il nostro cucciolo.", () => {
                         setTimeout(() => {
                             chiudiSchermata112();
                             vaiAlLivelloSuccessivo();
@@ -1801,11 +1784,25 @@
             nextBtn.style.display = "block";
         }
 
-        
+        // --- GESTIONE AUTOPLAY PRESENTAZIONE INIZIALE ---
+        function sbloccaAutoplayIniziale() {
+            // Se l'utente ha già avviato il gioco, non deve sbloccare la presentazione
+            if (giocoInCorso) return;
+
+            const audioIntro = document.getElementById('audioIntro');
+            if (audioIntro && audioIntro.paused) {
+                audioIntro.play().catch(err => console.log("Autoplay in attesa di interazione"));
+            }
+            document.removeEventListener('click', sbloccaAutoplayIniziale);
+            document.removeEventListener('touchstart', sbloccaAutoplayIniziale);
+        }
+        document.addEventListener('click', sbloccaAutoplayIniziale);
+        document.addEventListener('touchstart', sbloccaAutoplayIniziale);
+
+        // Avvio del gioco reale e spegnimento definitivo della presentazione
         startZone.addEventListener('click', startGame);
         resetBtn.addEventListener('click', resetLevel);
         playAgainBtn.addEventListener('click', startGame);
-
     </script>
 </body>
 </html>
